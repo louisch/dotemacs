@@ -1,6 +1,6 @@
 (require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(setq package-archives '(("marmalade" . "http://marmalade-repo.org/packages/")
+			  ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ; from purcell/emacs.d
 (defun require-package (package &optional min-version no-refresh)
@@ -17,7 +17,11 @@ locate PACKAGE."
 
 (package-initialize)
 
+(require-package 'auto-complete)
 (require-package 'evil)
+(require-package 'haskell-mode)
+(require-package 'linum-relative)
+(require-package 'yasnippet)
 
 (setq evil-search-module 'evil-search
       evil-want-C-u-scroll t
@@ -25,6 +29,22 @@ locate PACKAGE."
 
 (require 'evil)
 (evil-mode t)
+(require 'auto-complete)
+
+; YASnippet
+(require 'yasnippet)
 
 ; Set an absolute backup directory, placing it in the emacs config dir
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
+; Spaces only for indentation
+(setq-default indent-tabs-mode nil)
+
+; Linum
+(require 'linum)
+(require 'linum-relative)
+(add-hook 'find-file-hook (lambda ()
+                            (hl-line-mode)
+                            (linum-mode)))
