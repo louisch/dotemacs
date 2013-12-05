@@ -27,9 +27,16 @@ locate PACKAGE."
       evil-want-C-u-scroll t
       evil-want-C-w-in-emacs-state t)
 
+; Evil
 (require 'evil)
 (evil-mode t)
+
+; Auto-Complete
 (require 'auto-complete)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(require 'auto-complete-config)
+(ac-config-default)
+(ac-linum-workaround)
 
 ; YASnippet
 (require 'yasnippet)
