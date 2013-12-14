@@ -37,6 +37,7 @@ locate PACKAGE."
 (require 'auto-complete-config)
 (ac-config-default)
 (ac-linum-workaround)
+(setq ac-ignore-case t)
 
 ; YASnippet
 (require 'yasnippet)
