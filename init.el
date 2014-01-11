@@ -1,6 +1,6 @@
 (require 'package)
-(setq package-archives '(("marmalade" . "http://marmalade-repo.org/packages/")
-			  ("melpa" . "http://melpa.milkbox.net/packages/")))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 ; from purcell/emacs.d
 (defun require-package (package &optional min-version no-refresh)
@@ -16,20 +16,38 @@ locate PACKAGE."
 	(require-package package min-version t)))))
 
 (package-initialize)
+(package-refresh-contents)
 
+; Required packages:
+; Core
 (require-package 'auto-complete)
 (require-package 'evil)
-(require-package 'haskell-mode)
+(require-package 'flx-ido)
 (require-package 'linum-relative)
+(require-package 'paredit)
+(require-package 'evil-paredit)
+(require-package 'projectile)
+(require-package 'solarized-theme)
 (require-package 'yasnippet)
+; Haskell
+(require-package 'haskell-mode)
+; Clojure
+(require-package 'clojure-mode)
+(require-package 'clojure-test-mode)
+(require-package 'cider)
 
-(setq evil-search-module 'evil-search
-      evil-want-C-u-scroll t
-      evil-want-C-w-in-emacs-state t)
 
-; Evil
-(require 'evil)
-(evil-mode t)
+; Colorscheme
+(require 'solarized-dark-theme)
+
+; Set an absolute backup directory, placing it in the emacs config dir
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+
+; Spaces only for indentation
+(setq-default indent-tabs-mode nil)
+
+
+; Packages configuration:
 
 ; Auto-Complete
 (require 'auto-complete)
@@ -39,17 +57,20 @@ locate PACKAGE."
 (ac-linum-workaround)
 (setq ac-ignore-case t)
 
-; YASnippet
-(require 'yasnippet)
-(yas-global-mode 1)
+; Evil
+(setq evil-search-module 'evil-search
+      evil-want-C-u-scroll t
+      evil-want-C-w-in-emacs-state t)
+(require 'evil)
+(evil-mode t)
 
-; Set an absolute backup directory, placing it in the emacs config dir
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
-
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-
-; Spaces only for indentation
-(setq-default indent-tabs-mode nil)
+; flx
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights
+(setq ido-use-faces nil)
 
 ; Linum
 (require 'linum)
@@ -57,3 +78,21 @@ locate PACKAGE."
 (add-hook 'find-file-hook (lambda ()
                             (hl-line-mode)
                             (linum-mode)))
+
+; Paredit
+(require 'evil-paredit)
+
+; Projectile
+(require 'projectile)
+(projectile-global-mode)
+
+; YASnippet
+(require 'yasnippet)
+(yas-global-mode 1)
+
+
+; Language-specific:
+; Clojure
+(add-hook 'clojure-mode-hook 'evil-paredit-mode)
+; Haskell
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
