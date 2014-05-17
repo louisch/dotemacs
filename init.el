@@ -40,11 +40,20 @@ locate PACKAGE."
 ; Colorscheme
 (require 'solarized-dark-theme)
 
+; Focus the initial window on startup
+(x-focus-frame nil)
+
 ; Set an absolute backup directory, placing it in the emacs config dir
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 ; Spaces only for indentation
 (setq-default indent-tabs-mode nil)
+
+; Turn column numbers on in the modeline
+(setq column-number-mode t)
+
+; Line length of 79
+(setq-default fill-column 79)
 
 
 ; Packages configuration:
