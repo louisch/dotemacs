@@ -40,23 +40,23 @@ locate PACKAGE."
 (require-package 'cider)
 
 
+; Appearance
 ; Colorscheme
 (require 'solarized-dark-theme)
-
-; Focus the initial window on startup
-(x-focus-frame nil)
-
-; Set an absolute backup directory, placing it in the emacs config dir
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
-
-; Spaces only for indentation
-(setq-default indent-tabs-mode nil)
-
+; Line length of 79
+(setq-default fill-column 79)
+; Set frames to have width 84 (enough space to display 80 characters)
+(add-to-list 'default-frame-alist '(width . 84))
 ; Turn column numbers on in the modeline
 (setq column-number-mode t)
 
-; Line length of 79
-(setq-default fill-column 79)
+; Behaviour
+; Focus the initial window on startup
+(x-focus-frame nil)
+; Set an absolute backup directory, placing it in the emacs config dir
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+; Spaces only for indentation
+(setq-default indent-tabs-mode nil)
 
 
 ; Packages configuration:
