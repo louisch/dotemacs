@@ -24,6 +24,8 @@ locate PACKAGE."
 (require-package 'auto-complete)
 (require-package 'evil)
 (require-package 'flx-ido)
+(require-package 'helm)
+(require-package 'helm-projectile)
 (require-package 'linum-relative)
 (require-package 'paredit)
 (require-package 'evil-paredit)
@@ -88,6 +90,12 @@ locate PACKAGE."
 (flx-ido-mode 1)
 ;; disable ido faces to see flx highlights
 (setq ido-use-faces nil)
+
+; Helm
+(require 'helm-config)
+
+; helm-projectile
+(global-set-key (kbd "C-c h") 'helm-projectile)
 
 ; Linum
 (require 'linum)
