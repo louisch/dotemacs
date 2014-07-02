@@ -45,8 +45,12 @@ locate PACKAGE."
 (require 'solarized-dark-theme)
 ; Line length of 79
 (setq-default fill-column 79)
-; Set frames to have width 84 (enough space to display 80 characters)
+; Set frames to have width 84 (enough space to display 80 characters), and full
+; screen height.
+(add-to-list 'default-frame-alist '(left . 0))
+(add-to-list 'default-frame-alist '(top . 0))
 (add-to-list 'default-frame-alist '(width . 84))
+(add-to-list 'default-frame-alist '(fullscreen . fullheight))
 ; Turn column numbers on in the modeline
 (setq column-number-mode t)
 
