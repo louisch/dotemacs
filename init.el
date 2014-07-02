@@ -59,8 +59,10 @@ locate PACKAGE."
 (x-focus-frame nil)
 ; Set an absolute backup directory, placing it in the emacs config dir
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
-; Spaces only for indentation
-(setq-default indent-tabs-mode nil)
+; Indentation
+(setq-default indent-tabs-mode nil) ; Spaces only for indentation
+(setq tab-width 4)
+(setq c-basic-offset 4)
 
 
 ; Packages configuration:
