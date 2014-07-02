@@ -32,12 +32,14 @@ locate PACKAGE."
 (require-package 'projectile)
 (require-package 'solarized-theme)
 (require-package 'yasnippet)
-; Haskell
-(require-package 'haskell-mode)
+; C Sharp
+(require-package 'csharp-mode)
 ; Clojure
 (require-package 'clojure-mode)
 (require-package 'clojure-test-mode)
 (require-package 'cider)
+; Haskell
+(require-package 'haskell-mode)
 
 
 ; Appearance
@@ -124,6 +126,11 @@ locate PACKAGE."
 
 
 ; Language-specific:
+; C Sharp
+(autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
+  (setq auto-mode-alist
+     (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
+(add-to-list 'c-default-style '(csharp-mode . "c#"))
 ; Clojure
 (add-hook 'clojure-mode-hook 'evil-paredit-mode)
 ; Haskell
