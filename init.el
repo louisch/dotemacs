@@ -134,7 +134,7 @@ locate PACKAGE."
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
   (setq auto-mode-alist
      (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
-(add-to-list 'c-default-style '(csharp-mode . "c#"))
+(setq c-default-style '((csharp-mode . "c#")))
 ; Clojure
 (add-hook 'clojure-mode-hook 'evil-paredit-mode)
 ; Haskell
