@@ -67,6 +67,8 @@ locate PACKAGE."
 (setq-default indent-tabs-mode nil) ; Spaces only for indentation
 (setq tab-width 4)
 (setq c-basic-offset 4)
+; Add custom plugins directory to load-path
+(add-to-list 'load-path "~/.emacs.d/custom")
 
 
 ; Packages configuration:
