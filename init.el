@@ -148,6 +148,8 @@ locate PACKAGE."
 (setq uniquify-buffer-name-style 'forward)
 
 ; YASnippet
+; Provides snippets like Textmate. Use certain keywords and press TAB to expand
+; into oft-used programming constructs.
 (require 'yasnippet)
 (yas-global-mode 1)
 
