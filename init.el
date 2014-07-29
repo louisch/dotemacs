@@ -80,6 +80,8 @@ locate PACKAGE."
 (add-to-list 'load-path (concat user-emacs-directory "custom"))
 ; Show matching parenthesis when cursor is on a parenthesis
 (show-paren-mode 1)
+; apropos will show everything, including functions
+(setq apropos-do-all t)
 
 
 ;; Packages configuration:
