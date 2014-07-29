@@ -135,6 +135,7 @@ locate PACKAGE."
                             (linum-mode)))
 
 ; Paredit
+; Provide extra functionality for manipulating parentheses
 (require 'evil-paredit)
 
 ; Projectile
