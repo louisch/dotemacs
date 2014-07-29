@@ -45,6 +45,11 @@ locate PACKAGE."
 
 
 ;; Appearance
+; Turn off toolbar and scrollbar
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
 ; Colorscheme
 (require 'solarized-dark-theme)
 ; Line length of 79
