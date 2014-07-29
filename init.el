@@ -74,8 +74,8 @@ locate PACKAGE."
       '(("." . (concat user-emacs-directory "backups"))))
 ; Indentation
 (setq-default indent-tabs-mode nil) ; Spaces only for indentation
-(setq tab-width 4)
-(setq c-basic-offset 4)
+(setq tab-width 4
+      c-basic-offset 4)
 ; Add custom plugins directory to load-path
 (add-to-list 'load-path (concat user-emacs-directory "custom"))
 
