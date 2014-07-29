@@ -1,4 +1,5 @@
 (require 'package)
+; List of package archives
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
@@ -15,6 +16,7 @@ locate PACKAGE."
 	(package-refresh-contents)
 	(require-package package min-version t)))))
 
+; Initialise packages
 (package-initialize)
 (package-refresh-contents)
 
