@@ -143,6 +143,10 @@ locate PACKAGE."
 ; Change the default save location to be in the user emacs directory
 (setq save-place-file (concat user-emacs-directory "places"))
 
+; Uniquify
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
 ; YASnippet
 (require 'yasnippet)
 (yas-global-mode 1)
