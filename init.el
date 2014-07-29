@@ -96,6 +96,7 @@ locate PACKAGE."
 (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
 
 ; Auto-Complete
+; Provide auto-complete for identifiers in a program
 (require 'auto-complete)
 (add-to-list 'ac-dictionary-directories (concat user-emacs-directory "ac-dict"))
 (require 'auto-complete-config)
