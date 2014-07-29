@@ -144,6 +144,8 @@ locate PACKAGE."
 (setq save-place-file (concat user-emacs-directory "places"))
 
 ; Uniquify
+; When two buffers have the same name, distinguish them by their containing
+; directories
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
