@@ -32,6 +32,7 @@ locate PACKAGE."
 (require-package 'paredit)
 (require-package 'evil-paredit)
 (require-package 'projectile)
+(require-package 'saveplace)
 (require-package 'solarized-theme)
 (require-package 'yasnippet)
 ; C Sharp
@@ -131,6 +132,12 @@ locate PACKAGE."
 (require 'projectile)
 (projectile-global-mode)
 (setq projectile-enable-caching t)
+
+; Saveplace
+(require 'saveplace)
+(setq-default saveplace t)
+; Change the default save location to be in the user emacs directory
+(setq save-place-file (concat user-emacs-directory "places"))
 
 ; YASnippet
 (require 'yasnippet)
