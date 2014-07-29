@@ -18,7 +18,7 @@ locate PACKAGE."
 (package-initialize)
 (package-refresh-contents)
 
-; Required packages:
+;; Required packages:
 ; Core
 (require-package 'ack-and-a-half)
 (require-package 'auto-complete)
@@ -42,7 +42,7 @@ locate PACKAGE."
 (require-package 'haskell-mode)
 
 
-; Appearance
+;; Appearance
 ; Colorscheme
 (require 'solarized-dark-theme)
 ; Line length of 79
@@ -58,7 +58,7 @@ locate PACKAGE."
 ; Show trailing whitespace
 (setq show-trailing-whitespace t)
 
-; Behaviour
+;; Behaviour
 ; Focus the initial window on startup
 (x-focus-frame nil)
 ; Set an absolute backup directory, placing it in the emacs config dir
@@ -71,7 +71,7 @@ locate PACKAGE."
 (add-to-list 'load-path "~/.emacs.d/custom")
 
 
-; Packages configuration:
+;; Packages configuration:
 
 ; Ack-and-a-half
 (require 'ack-and-a-half)
@@ -129,7 +129,7 @@ locate PACKAGE."
 (yas-global-mode 1)
 
 
-; Language-specific:
+;; Language-specific:
 ; C Sharp
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
   (setq auto-mode-alist
