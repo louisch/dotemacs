@@ -69,13 +69,14 @@ locate PACKAGE."
 ; Focus the initial window on startup
 (x-focus-frame nil)
 ; Set an absolute backup directory, placing it in the emacs config dir
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(setq backup-directory-alist
+      '(("." . (concat user-emacs-directory "backups"))))
 ; Indentation
 (setq-default indent-tabs-mode nil) ; Spaces only for indentation
 (setq tab-width 4)
 (setq c-basic-offset 4)
 ; Add custom plugins directory to load-path
-(add-to-list 'load-path "~/.emacs.d/custom")
+(add-to-list 'load-path (concat user-emacs-directory "custom"))
 
 
 ;; Packages configuration:
@@ -89,7 +90,7 @@ locate PACKAGE."
 
 ; Auto-Complete
 (require 'auto-complete)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(add-to-list 'ac-dictionary-directories (concat user-emacs-directory "ac-dict"))
 (require 'auto-complete-config)
 (ac-config-default)
 (ac-linum-workaround)
