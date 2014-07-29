@@ -121,6 +121,7 @@ locate PACKAGE."
 (setq ido-use-faces nil)
 
 ; Helm
+; Save files in an index, as projects
 (require 'helm-config)
 
 ; helm-projectile
