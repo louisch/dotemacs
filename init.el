@@ -105,6 +105,7 @@ locate PACKAGE."
 (setq ac-ignore-case t)
 
 ; Evil
+; Provide vim keybindings to emacs
 (setq evil-search-module 'evil-search
       evil-want-C-u-scroll t
       evil-want-C-w-in-emacs-state t)
