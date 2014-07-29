@@ -144,6 +144,7 @@ locate PACKAGE."
 (setq projectile-enable-caching t)
 
 ; Saveplace
+; Save the location of point when closing the file
 (require 'saveplace)
 (setq-default saveplace t)
 ; Change the default save location to be in the user emacs directory
