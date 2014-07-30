@@ -128,6 +128,7 @@ locate PACKAGE."
 ; Replace default commands with helm alternatives
 (global-set-key (kbd "M-x") 'helm-M-x)
 (define-key evil-normal-state-map (kbd ";") 'helm-M-x)
+(global-set-key (kbd "C-x b") 'helm-mini)
 
 ; Linum
 ; Display line numbers
