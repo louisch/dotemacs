@@ -125,6 +125,9 @@ locate PACKAGE."
 (require 'helm-config)
 ; Enable helm from the get-go
 (helm-mode 1)
+; Replace default commands with helm alternatives
+(global-set-key (kbd "M-x") 'helm-M-x)
+(define-key evil-normal-state-map (kbd ";") 'helm-M-x)
 
 ; Linum
 ; Display line numbers
