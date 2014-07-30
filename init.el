@@ -129,7 +129,7 @@ locate PACKAGE."
 (global-set-key (kbd "M-x") 'helm-M-x)
 (define-key evil-normal-state-map (kbd ";") 'helm-M-x)
 (global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-f") 'helm-find-files
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 ; Use more convenient binding for helm's kill ring
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
