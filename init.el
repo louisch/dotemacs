@@ -123,8 +123,8 @@ locate PACKAGE."
 ; Helm
 ; Save files in an index, as projects
 (require 'helm-config)
-; helm-projectile
-(global-set-key (kbd "C-c h") 'helm-projectile)
+; Enable helm from the get-go
+(helm-mode 1)
 
 ; Linum
 ; Display line numbers
