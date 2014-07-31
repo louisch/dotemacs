@@ -26,6 +26,7 @@ locate PACKAGE."
 
 ;; Required packages:
 ; Core
+(require-package 'ace-jump-mode)
 (require-package 'ack-and-a-half)
 (require-package 'auto-complete)
 (require-package 'evil)
@@ -51,6 +52,9 @@ locate PACKAGE."
 
 
 ;; Package configuration:
+
+; Ace Jump Mode
+(evil-leader/set-key "<SPC>" 'ace-jump-mode)
 
 ; Ack-and-a-half
 (require 'ack-and-a-half)
