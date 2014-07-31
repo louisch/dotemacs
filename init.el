@@ -1,3 +1,5 @@
+;;; Packages
+
 (require 'package)
 ; List of package archives
 (add-to-list 'package-archives
@@ -86,7 +88,7 @@ locate PACKAGE."
 (setq apropos-do-all t)
 
 
-;; Packages configuration:
+;; Package configuration:
 
 ; Ack-and-a-half
 (require 'ack-and-a-half)
