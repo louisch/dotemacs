@@ -29,6 +29,7 @@ locate PACKAGE."
 (require-package 'ack-and-a-half)
 (require-package 'auto-complete)
 (require-package 'evil)
+(require-package 'evil-leader)
 (require-package 'flx-ido)
 (require-package 'helm)
 (require-package 'helm-projectile)
@@ -74,6 +75,10 @@ locate PACKAGE."
       evil-want-C-w-in-emacs-state t)
 (require 'evil)
 (evil-mode t)
+; Enable evil-leader
+(require 'evil-leader)
+(global-evil-leader-mode)
+(evil-leader/set-leader "<SPC>")
 
 ; flx
 (require 'flx-ido)
