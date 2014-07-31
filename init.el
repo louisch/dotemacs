@@ -54,6 +54,7 @@ Missing packages are installed automatically."
     helm-projectile
     linum-relative
     paredit
+    magit
     projectile
     saveplace
     solarized-theme
