@@ -195,5 +195,8 @@ locate PACKAGE."
 (show-paren-mode 1)
 ; apropos will show everything, including functions
 (setq apropos-do-all t)
-; Set write file keybinding
-(evil-leader/set-key "w" 'write-file)
+; Rebind several common operations to use the leader key
+(evil-leader/set-key
+  "w" 'write-file
+  "e" 'find-file
+  "b" 'helm-mini)
