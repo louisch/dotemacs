@@ -110,6 +110,7 @@ locate PACKAGE."
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 ; Rebind helm's google suggest to a more convenient binding
 (global-set-key (kbd "C-x c g") 'helm-google-suggest)
+(evil-leader/set-key "g" 'helm-google-suggest)
 
 ; Linum
 ; Display line numbers
