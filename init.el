@@ -231,3 +231,5 @@ Missing packages are installed automatically."
   "w" 'save-buffer
   "e" 'helm-find-files
   "b" 'helm-mini)
+; Replace yes-or-no with y-or-n prompt
+(fset 'yes-or-no-p 'y-or-n-p)
