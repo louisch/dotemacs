@@ -98,8 +98,8 @@ locate PACKAGE."
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-z")  'helm-select-action)
 ; Replace default commands with helm alternatives
-(global-set-key (kbd "M-x") 'helm-M-x)
 (define-key evil-normal-state-map (kbd ";") 'helm-M-x)
+(global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 ; Use more convenient binding for helm's kill ring
