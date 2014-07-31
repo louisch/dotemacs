@@ -45,6 +45,7 @@ Missing packages are installed automatically."
     auto-complete
     evil
     evil-leader
+    evil-paredit
     flx-ido
     flycheck
     git-timemachine
@@ -53,7 +54,6 @@ Missing packages are installed automatically."
     helm-projectile
     linum-relative
     paredit
-    evil-paredit
     projectile
     saveplace
     solarized-theme
