@@ -100,6 +100,8 @@ locate PACKAGE."
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 ; Use more convenient binding for helm's kill ring
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+; Rebind helm's google suggest to a more convenient binding
+(global-set-key (kbd "C-x c g") 'helm-google-suggest)
 
 ; Linum
 ; Display line numbers
