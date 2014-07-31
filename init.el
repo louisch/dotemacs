@@ -28,6 +28,7 @@ locate PACKAGE."
 ; Core
 (require-package 'ace-jump-mode)
 (require-package 'ack-and-a-half)
+(require-package 'anzu)
 (require-package 'auto-complete)
 (require-package 'evil)
 (require-package 'evil-leader)
@@ -62,6 +63,11 @@ locate PACKAGE."
 (defalias 'ack-same 'ack-and-a-half-same)
 (defalias 'ack-find-file 'ack-and-a-half-find-file)
 (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
+
+; Anzu
+(global-anzu-mode +1)
+(global-set-key (kbd "M-%") 'anzu-query-replace)
+(global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
 
 ; Auto-Complete
 ; Provide auto-complete for identifiers in a program
