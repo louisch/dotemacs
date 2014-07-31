@@ -93,6 +93,10 @@ locate PACKAGE."
 (require 'helm-config)
 ; Enable helm from the get-go
 (helm-mode 1)
+; Reverse the bindings of persistent action and select action
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-z")  'helm-select-action)
 ; Replace default commands with helm alternatives
 (global-set-key (kbd "M-x") 'helm-M-x)
 (define-key evil-normal-state-map (kbd ";") 'helm-M-x)
