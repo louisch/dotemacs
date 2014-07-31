@@ -197,6 +197,6 @@ locate PACKAGE."
 (setq apropos-do-all t)
 ; Rebind several common operations to use the leader key
 (evil-leader/set-key
-  "w" 'write-file
-  "e" 'find-file
+  "w" 'save-buffer
+  "e" 'helm-find-files
   "b" 'helm-mini)
