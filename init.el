@@ -1,5 +1,6 @@
 ;;; Packages
 
+(require 'cl)
 (require 'package)
 ; List of package archives
 (add-to-list 'package-archives
@@ -7,52 +8,67 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-; from purcell/emacs.d
-(defun require-package (package &optional min-version no-refresh)
-  "Install given PACKAGE, optionally requiring MIN-VERSION. If NO-REFRESH is
-non-nil, the available package lists will not be re-downloaded in order to
-locate PACKAGE."
-  (if (package-installed-p package min-version)
-      t
-    (if (or (assoc package package-archive-contents) no-refresh)
-	(package-install package)
-      (progn
-	(package-refresh-contents)
-	(require-package package min-version t)))))
-
 ; Initialise packages
 (package-initialize)
 (package-refresh-contents)
 
+
+; Functions for installing and managing packages taken from Emacs Prelude
+(defun packages-installed-p ()
+  "Check if all packages in `my-packages' are installed."
+  (every #'package-installed-p my-packages))
+(defun require-package (package)
+  "Install PACKAGE unless already installed."
+  (unless (memq package packages)
+    (add-to-list 'packages package))
+  (unless (package-installed-p package)
+    (package-install package)))
+(defun require-packages (packages)
+  "Ensure PACKAGES are installed.
+Missing packages are installed automatically."
+  (mapc #'require-package packages))
+(defun install-packages ()
+  "Install all packages listed in `my-packages'."
+  (unless (packages-installed-p)
+    ;; check for new packages (package versions)
+    (message "%s" "Now refreshing package database...")
+    (package-refresh-contents)
+    (message "%s" " done.")
+    ;; install the missing packages
+    (require-packages my-packages)))
+
 ;; Required packages:
-; Core
-(require-package 'ace-jump-mode)
-(require-package 'ack-and-a-half)
-(require-package 'anzu)
-(require-package 'auto-complete)
-(require-package 'evil)
-(require-package 'evil-leader)
-(require-package 'flx-ido)
-(require-package 'flycheck)
-(require-package 'git-timemachine)
-(require-package 'gitignore-mode)
-(require-package 'helm)
-(require-package 'helm-projectile)
-(require-package 'linum-relative)
-(require-package 'paredit)
-(require-package 'evil-paredit)
-(require-package 'projectile)
-(require-package 'saveplace)
-(require-package 'solarized-theme)
-(require-package 'yasnippet)
-; C Sharp
-(require-package 'csharp-mode)
-; Clojure
-(require-package 'clojure-mode)
-(require-package 'clojure-test-mode)
-(require-package 'cider)
-; Haskell
-(require-package 'haskell-mode)
+(defvar my-packages
+  '(ace-jump-mode
+    ack-and-a-half
+    anzu
+    auto-complete
+    evil
+    evil-leader
+    flx-ido
+    flycheck
+    git-timemachine
+    gitignore-mode
+    helm
+    helm-projectile
+    linum-relative
+    paredit
+    evil-paredit
+    projectile
+    saveplace
+    solarized-theme
+    yasnippet
+
+    csharp-mode
+
+    clojure-mode
+    clojure-test-mode
+    cider
+
+    haskell-mode)
+  "A list of packages to ensure are installed at launch")
+; Install all above packages
+(install-packages)
 
 
 ;; Package configuration:
