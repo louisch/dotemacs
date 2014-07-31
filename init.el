@@ -49,45 +49,6 @@ locate PACKAGE."
 (require-package 'haskell-mode)
 
 
-;; Appearance
-; Turn off toolbar and scrollbar
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
-; Colorscheme
-(require 'solarized-dark-theme)
-; Line length of 79
-(setq-default fill-column 79)
-; Set frames to have width 84 (enough space to display 80 characters), and full
-; screen height.
-(add-to-list 'default-frame-alist '(left . 0))
-(add-to-list 'default-frame-alist '(top . 0))
-(add-to-list 'default-frame-alist '(width . 84))
-(add-to-list 'default-frame-alist '(fullscreen . fullheight))
-; Turn column numbers on in the modeline
-(setq column-number-mode t)
-; Show trailing whitespace
-(setq show-trailing-whitespace t)
-
-;; Behaviour
-; Focus the initial window on startup
-(x-focus-frame nil)
-; Set an absolute backup directory, placing it in the emacs config dir
-(setq backup-directory-alist
-      (list (cons "." (concat user-emacs-directory "backups"))))
-; Indentation
-(setq-default indent-tabs-mode nil) ; Spaces only for indentation
-(setq tab-width 4
-      c-basic-offset 4)
-; Add custom plugins directory to load-path
-(add-to-list 'load-path (concat user-emacs-directory "custom"))
-; Show matching parenthesis when cursor is on a parenthesis
-(show-paren-mode 1)
-; apropos will show everything, including functions
-(setq apropos-do-all t)
-
-
 ;; Package configuration:
 
 ; Ack-and-a-half
@@ -182,3 +143,46 @@ locate PACKAGE."
 (add-hook 'clojure-mode-hook 'evil-paredit-mode)
 ; Haskell
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
+
+;;; Core Configuration
+
+;; Appearance
+; Turn off toolbar and scrollbar
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
+; Colorscheme
+(require 'solarized-dark-theme)
+; Line length of 79
+(setq-default fill-column 79)
+; Set frames to have width 84 (enough space to display 80 characters), and full
+; screen height.
+(add-to-list 'default-frame-alist '(left . 0))
+(add-to-list 'default-frame-alist '(top . 0))
+(add-to-list 'default-frame-alist '(width . 84))
+(add-to-list 'default-frame-alist '(fullscreen . fullheight))
+; Turn column numbers on in the modeline
+(setq column-number-mode t)
+; Show trailing whitespace
+(setq show-trailing-whitespace t)
+
+;; Behaviour
+; Focus the initial window on startup
+(x-focus-frame nil)
+; Set an absolute backup directory, placing it in the emacs config dir
+(setq backup-directory-alist
+      (list (cons "." (concat user-emacs-directory "backups"))))
+; Indentation
+(setq-default indent-tabs-mode nil) ; Spaces only for indentation
+(setq tab-width 4
+      c-basic-offset 4)
+; Add custom plugins directory to load-path
+(add-to-list 'load-path (concat user-emacs-directory "custom"))
+; Show matching parenthesis when cursor is on a parenthesis
+(show-paren-mode 1)
+; apropos will show everything, including functions
+(setq apropos-do-all t)
+; Set write file keybinding
+(evil-leader/set-key "w" 'write-file)
