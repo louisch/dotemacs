@@ -234,8 +234,6 @@ Missing packages are installed automatically."
       c-basic-offset 4)
 ; Add custom plugins directory to load-path
 (add-to-list 'load-path (concat user-emacs-directory "custom"))
-; Show matching parenthesis when cursor is on a parenthesis
-(show-paren-mode 1)
 ; apropos will show everything, including functions
 (setq apropos-do-all t)
 ; Rebind several common operations to use the leader key
