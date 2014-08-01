@@ -75,6 +75,23 @@ Missing packages are installed automatically."
 
 ;; Package configuration:
 
+; NOTE: Evil must be placed before anything else because the evil variables need
+; to be set before any call to an evil function is made. Evil-leader/set-key is
+; included in this requirement.
+
+; Evil
+; Provide vim keybindings to emacs
+; The following variables should be set before evil is loaded via require
+(setq-default evil-search-module 'evil-search
+              evil-want-C-u-scroll t
+              evil-want-C-w-in-emacs-state t)
+(require 'evil)
+(evil-mode 1)
+; Enable evil-leader
+(require 'evil-leader)
+(global-evil-leader-mode)
+(evil-leader/set-leader "<SPC>")
+
 ; Ace Jump Mode
 (evil-leader/set-key "<SPC>" 'ace-jump-mode)
 
@@ -98,18 +115,6 @@ Missing packages are installed automatically."
 (ac-config-default)
 (ac-linum-workaround)
 (setq ac-ignore-case t)
-
-; Evil
-; Provide vim keybindings to emacs
-(setq evil-search-module 'evil-search
-      evil-want-C-u-scroll t
-      evil-want-C-w-in-emacs-state t)
-(require 'evil)
-(evil-mode t)
-; Enable evil-leader
-(require 'evil-leader)
-(global-evil-leader-mode)
-(evil-leader/set-leader "<SPC>")
 
 ; flx
 (require 'flx-ido)
