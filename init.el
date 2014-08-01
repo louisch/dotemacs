@@ -147,6 +147,10 @@ Missing packages are installed automatically."
                             (hl-line-mode)
                             (linum-mode)))
 
+; Magit
+; Provide an interface to git from emacs
+(evil-leader/set-key "m" 'magit-status)
+
 ; Paredit
 ; Provide extra functionality for manipulating parentheses
 (require 'evil-paredit)
