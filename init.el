@@ -19,14 +19,14 @@
   (every #'package-installed-p my-packages))
 (defun require-package (package)
   "Install PACKAGE unless already installed."
-  (unless (memq package packages)
-    (add-to-list 'packages package))
+  (unless (memq package my-packages)
+    (add-to-list 'my-packages package))
   (unless (package-installed-p package)
     (package-install package)))
 (defun require-packages (packages)
   "Ensure PACKAGES are installed.
 Missing packages are installed automatically."
-  (mapc #'require-package packages))
+  (mapc #'require-package my-packages))
 (defun install-packages ()
   "Install all packages listed in `my-packages'."
   (unless (packages-installed-p)
