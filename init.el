@@ -235,10 +235,10 @@ Missing packages are installed automatically."
   (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
-; Colorscheme
-(require 'solarized-dark-theme)
 ; Line length of 79
 (setq-default fill-column 79)
+; Custom theme
+(load-theme 'solarized-dark t)
 ; Set frames to have width 84 (enough space to display 80 characters), and full
 ; screen height.
 (add-to-list 'default-frame-alist '(left . 0))
