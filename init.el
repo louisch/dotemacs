@@ -67,7 +67,9 @@ Missing packages are installed automatically."
     clojure-test-mode
     cider
 
-    haskell-mode)
+    haskell-mode
+
+    markdown-mode)
   "A list of packages to ensure are installed at launch")
 ; Install all above packages
 (install-packages)
@@ -206,6 +208,10 @@ Missing packages are installed automatically."
 (add-hook 'clojure-mode-hook 'evil-paredit-mode)
 ; Haskell
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+; Markdown
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 
 ;;; Core Configuration
