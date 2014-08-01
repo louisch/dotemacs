@@ -59,6 +59,7 @@ Missing packages are installed automatically."
     saveplace
     smartparens
     solarized-theme
+    volatile-highlights
     yasnippet
 
     csharp-mode
@@ -190,6 +191,11 @@ Missing packages are installed automatically."
 ; directories
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
+
+; Volatile Highlights
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
+(vhl/define-extension 'yank 'evil-paste-after 'evil-paste-before)
 
 ; YASnippet
 ; Provides snippets like Textmate. Use certain keywords and press TAB to expand
