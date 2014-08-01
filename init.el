@@ -57,6 +57,7 @@ Missing packages are installed automatically."
     paredit
     projectile
     saveplace
+    smartparens
     solarized-theme
     yasnippet
 
@@ -161,6 +162,17 @@ Missing packages are installed automatically."
 (setq-default saveplace t)
 ; Change the default save location to be in the user emacs directory
 (setq save-place-file (concat user-emacs-directory "places"))
+
+; Smartparens
+; Provide several features for manipulating delimiter pairs, including parens
+(smartparens-global-mode t)
+(require 'smartparens-config)
+; Show matching pairs when cursor is on one of them
+(show-smartparens-global-mode t)
+(setq sp-show-pair-from-inside t)
+; Consider strings as sexps in smartparens in the following modes:
+(nconc sp-navigate-consider-stringlike-sexp
+       '(emacs-lisp-mode csharp-mode python-mode))
 
 ; Uniquify
 ; When two buffers have the same name, distinguish them by their containing
