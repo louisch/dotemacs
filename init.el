@@ -267,10 +267,13 @@ Missing packages are installed automatically."
 (setq apropos-do-all t)
 ; Rebind several common operations to use the leader key
 (evil-leader/set-key
-  "w" 'save-buffer
+  "s" 'save-buffer
   "e" 'helm-find-files
   "b" 'helm-mini)
 ; Replace yes-or-no with y-or-n prompt
 (fset 'yes-or-no-p 'y-or-n-p)
 ; Do not confirm when file or buffer does not exist
 (setq confirm-nonexistent-file-or-buffer nil)
+
+;; Additional keybindings
+(evil-leader/set-key "w" 'delete-trailing-whitespace)
