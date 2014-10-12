@@ -293,7 +293,9 @@ Missing packages are installed automatically."
 ;; Additional keybindings
 (evil-leader/set-key
   "w" 'delete-trailing-whitespace
-  "i" (find-file-command user-init-file))
+  "i" (find-file-command user-init-file)
+  "%" 'split-window-right
+  "\"" 'split-window-below)
 
 
 ;; Org Mode
