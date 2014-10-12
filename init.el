@@ -238,6 +238,9 @@ Missing packages are installed automatically."
 
 ;;; Core Configuration
 
+; Enable lexical binding
+(setq lexical-binding t)
+
 ;; Appearance
 ; Turn off toolbar and scrollbar
 (when (fboundp 'tool-bar-mode)
