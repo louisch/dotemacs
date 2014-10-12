@@ -285,7 +285,8 @@ Missing packages are installed automatically."
 (evil-leader/set-key
   "s" 'save-buffer
   "e" 'helm-find-files
-  "b" 'helm-mini)
+  "b" 'helm-mini
+  "i" (find-file-command user-init-file))
 ; Replace yes-or-no with y-or-n prompt
 (fset 'yes-or-no-p 'y-or-n-p)
 ; Do not confirm when file or buffer does not exist
