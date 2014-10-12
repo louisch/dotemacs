@@ -241,6 +241,11 @@ Missing packages are installed automatically."
 ; Enable lexical binding
 (setq lexical-binding t)
 
+; Support functions
+(defun find-file-command (a-file)
+  "Return a command that will find the given file."
+  (lambda () (interactive) (find-file a-file)))
+
 ;; Appearance
 ; Turn off toolbar and scrollbar
 (when (fboundp 'tool-bar-mode)
