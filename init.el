@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;;; Packages
 
 (require 'cl)
@@ -237,9 +239,6 @@ Missing packages are installed automatically."
 
 
 ;;; Core Configuration
-
-; Enable lexical binding
-(setq lexical-binding t)
 
 ; Support functions
 (defun find-file-command (a-file)
