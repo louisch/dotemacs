@@ -192,6 +192,14 @@ Missing packages are installed automatically."
 ; Consider strings as sexps in smartparens in the following modes:
 (nconc sp-navigate-consider-stringlike-sexp
        '(emacs-lisp-mode csharp-mode python-mode))
+; Keybindings for Smartparens, for evil
+(define-key evil-normal-state-map (kbd "C-M-f") 'sp-forward-sexp)
+(define-key evil-normal-state-map (kbd "C-M-b") 'sp-backward-sexp)
+(define-key evil-normal-state-map (kbd "C-M-d") 'sp-down-sexp)
+(define-key evil-normal-state-map (kbd "C-M-a") 'sp-backward-down-sexp)
+(define-key evil-normal-state-map (kbd "C-S-a") 'sp-beginning-of-sexp)
+(define-key evil-normal-state-map (kbd "C-S-d") 'sp-end-of-sexp)
+(define-key evil-normal-state-map (kbd "M-<backspace>") 'sp-unwrap-sexp)
 
 ; Uniquify
 ; When two buffers have the same name, distinguish them by their containing
