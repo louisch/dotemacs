@@ -294,3 +294,22 @@ Missing packages are installed automatically."
 
 ;; Additional keybindings
 (evil-leader/set-key "w" 'delete-trailing-whitespace)
+
+;; Org Mode
+(setq org-directory "~/org")
+(defun make-org-file-path (org-file)
+  "A function that gets the full path of a file in the org-directory."
+  (concat (file-name-as-directory org-directory) org-file))
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+; Keybindings
+(define-key global-map (kbd "C-c a") 'org-agenda)
+(define-key global-map (kbd "C-c b") 'org-iswitchb)
+(define-key global-map (kbd "C-c c") 'org-capture)
+(define-key global-map (kbd "C-c l") 'org-store-link)
+; Use indentation form to display headlines
+(add-hook 'org-mode-hook 'org-indent-mode)
+; The files that can be used to display the agenda.
+(setq org-agenda-files (list (make-org-file-path "main.org")
+                             (make-org-file-path "projects.org")
+                             (make-org-file-path "someday.org")
+                             (make-org-file-path "reference.org")))
