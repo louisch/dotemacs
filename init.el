@@ -301,9 +301,16 @@ Missing packages are installed automatically."
 ;; Org Mode
 (setq org-directory "~/org")
 (defun make-org-file-path (org-file)
-  "A function that gets the full path of a file in the org-directory."
-  (concat (file-name-as-directory org-directory) org-file))
-(setq org-default-notes-file (concat org-directory "/notes.org"))
+  "A function that gets the full path of a file in the org-directory.
+
+  Also adds the extension."
+  (concat (file-name-as-directory org-directory) org-file ".org"))
+; Files used by org
+(setq main-org-file (make-org-file-path "main"))
+(setq org-default-notes-file (concat org-directory main-org-file))
+; Headings that should be in main
+(setq tasks-heading "Tasks")
+
 ; Keybindings
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (define-key global-map (kbd "C-c b") 'org-iswitchb)
@@ -312,7 +319,8 @@ Missing packages are installed automatically."
 ; Use indentation form to display headlines
 (add-hook 'org-mode-hook 'org-indent-mode)
 ; The files that can be used to display the agenda.
-(setq org-agenda-files (list (make-org-file-path "main.org")
-                             (make-org-file-path "projects.org")
-                             (make-org-file-path "someday.org")
-                             (make-org-file-path "reference.org")))
+(setq org-agenda-files (list (make-org-file-path main-org-file)))
+; Capture Templates
+(setq org-capture-templates
+  '(("t" "Todo" entry (file+headline main-org-file tasks-heading)
+         "* TODO %?\n %i\n %a")))
