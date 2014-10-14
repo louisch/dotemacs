@@ -299,14 +299,16 @@ Missing packages are installed automatically."
 
 
 ;; Org Mode
-(setq org-directory "~/org")
 (defun make-org-file-path (org-file)
   "A function that gets the full path of a file in the org-directory.
 
   Also adds the extension."
   (concat (file-name-as-directory org-directory) org-file ".org"))
-; Files used by org
-(setq main-org-file (make-org-file-path "main"))
+; Files and directories used by org
+(setq org-directory "~/org")
+(defvar main-org-file (make-org-file-path "main")
+  "The primary org file, containing, amongst other things, the next 
+actions that need to be done at some point.")
 (setq org-default-notes-file main-org-file)
 ; Headings that should be in main
 (setq tasks-heading "Tasks")
