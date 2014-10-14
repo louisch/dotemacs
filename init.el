@@ -307,7 +307,7 @@ Missing packages are installed automatically."
   (concat (file-name-as-directory org-directory) org-file ".org"))
 ; Files used by org
 (setq main-org-file (make-org-file-path "main"))
-(setq org-default-notes-file (concat org-directory main-org-file))
+(setq org-default-notes-file main-org-file)
 ; Headings that should be in main
 (setq tasks-heading "Tasks")
 
@@ -319,7 +319,7 @@ Missing packages are installed automatically."
 ; Use indentation form to display headlines
 (add-hook 'org-mode-hook 'org-indent-mode)
 ; The files that can be used to display the agenda.
-(setq org-agenda-files (list (make-org-file-path main-org-file)))
+(setq org-agenda-files (list main-org-file))
 ; Capture Templates
 (setq org-capture-templates
   '(("t" "Todo" entry (file+headline main-org-file tasks-heading)
