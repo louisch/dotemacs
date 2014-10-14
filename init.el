@@ -309,20 +309,43 @@ Missing packages are installed automatically."
 (defvar main-org-file (make-org-file-path "main")
   "The primary org file, containing, amongst other things, the next 
 actions that need to be done at some point.")
+(defvar reference-org-file (make-org-file-path "reference")
+  "Reference. Used for storing any information in text form. For example,
+bills that need to be paid, or notes from an ongoing project.")
 (setq org-default-notes-file main-org-file)
 ; Headings that should be in main
-(setq tasks-heading "Tasks")
+(defvar tasks-heading "Tasks"
+  "The heading for the list of next actions.")
 
 ; Keybindings
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (define-key global-map (kbd "C-c b") 'org-iswitchb)
 (define-key global-map (kbd "C-c c") 'org-capture)
 (define-key global-map (kbd "C-c l") 'org-store-link)
+(evil-leader/set-key
+  "o" (find-file-command main-org-file))
 ; Use indentation form to display headlines
 (add-hook 'org-mode-hook 'org-indent-mode)
 ; The files that can be used to display the agenda.
 (setq org-agenda-files (list main-org-file))
 ; Capture Templates
 (setq org-capture-templates
-  '(("t" "Todo" entry (file+headline main-org-file tasks-heading)
-         "* TODO %?\n %i\n %a")))
+  '(("t" "Todo" entry (file+headline main-org-file "Tasks")
+         "* TODO %^{Action}%?\n  %i")
+    ("d" "Deadline" entry (file+headline main-org-file "Tasks")
+         "* TODO %^{Action}%?\n  DEADLINE: %^t\n  %i")
+    ("e" "Event" entry (file+headline main-org-file "Tasks")
+         "* TODO %^{Action}%?\n  %^t\n  %i")
+    ("p" "Project" entry
+         (file+headline (make-org-file-path "projects") "Projects")
+         "* %^{Project}%?\n  %i")
+    ("r" "For entering something into the reference")
+    ("rn" "Note" entry (file+headline reference-org-file "Journal")
+          "* %^{Note} %?\n  %T\n  %i")
+    ("rp" "Pasted note" entry (file+headline reference-org-file "Journal")
+          "* %^{Name of Note} %?\n  %T\n  %x")
+    ("rb" "Bill" entry (file+headline reference-org-file "Financial")
+          "* %^{Bill} %?\n %^t")
+    ("m" "Someday/Maybe" entry
+         (file+headline (make-org-file-path "someday") "Someday/Maybe")
+         "* %^{Someday/Maybe}%?\n  %i")))
