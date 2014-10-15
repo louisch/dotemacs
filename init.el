@@ -316,6 +316,15 @@ bills that need to be paid, or notes from an ongoing project.")
 ; Headings that should be in main
 (defvar tasks-heading "Tasks"
   "The heading for the list of next actions.")
+(defvar projects-heading "Projects"
+  "The heading for the list of projects ongoing.")
+(defvar notes-heading "Journal"
+  "The heading for the list of general text notes.")
+(defvar bills-heading "Journal"
+  "The heading for the list of bills")
+(defvar someday-heading "Someday/Maybe"
+  "The heading for the list of items that are not ongoing, but may happen at
+some point.")
 
 ; Keybindings
 (define-key global-map (kbd "C-c a") 'org-agenda)
@@ -330,22 +339,22 @@ bills that need to be paid, or notes from an ongoing project.")
 (setq org-agenda-files (list main-org-file))
 ; Capture Templates
 (setq org-capture-templates
-  '(("t" "Todo" entry (file+headline main-org-file "Tasks")
+  `(("t" "Todo" entry (file+headline ,main-org-file ,tasks-heading)
          "* TODO %^{Action}%?\n  %i")
-    ("d" "Deadline" entry (file+headline main-org-file "Tasks")
+    ("d" "Deadline" entry (file+headline ,main-org-file ,tasks-heading)
          "* TODO %^{Action}%?\n  DEADLINE: %^t\n  %i")
-    ("e" "Event" entry (file+headline main-org-file "Tasks")
+    ("e" "Event" entry (file+headline ,main-org-file ,tasks-heading)
          "* TODO %^{Action}%?\n  %^t\n  %i")
     ("p" "Project" entry
-         (file+headline (make-org-file-path "projects") "Projects")
+         (file+headline ,(make-org-file-path "projects") ,projects-heading)
          "* %^{Project}%?\n  %i")
     ("r" "For entering something into the reference")
-    ("rn" "Note" entry (file+headline reference-org-file "Journal")
+    ("rn" "Note" entry (file+headline ,reference-org-file ,notes-heading)
           "* %^{Note} %?\n  %T\n  %i")
-    ("rp" "Pasted note" entry (file+headline reference-org-file "Journal")
+    ("rp" "Pasted note" entry (file+headline ,reference-org-file ,notes-heading)
           "* %^{Name of Note} %?\n  %T\n  %x")
-    ("rb" "Bill" entry (file+headline reference-org-file "Financial")
+    ("rb" "Bill" entry (file+headline ,reference-org-file ,bills-heading)
           "* %^{Bill} %?\n %^t")
     ("m" "Someday/Maybe" entry
-         (file+headline (make-org-file-path "someday") "Someday/Maybe")
+         (file+headline ,(make-org-file-path "someday") ,someday-heading)
          "* %^{Someday/Maybe}%?\n  %i")))
