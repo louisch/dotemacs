@@ -327,6 +327,10 @@ bills that need to be paid, or notes from an ongoing project.")
 (defvar someday-heading "Someday/Maybe"
   "The heading for the list of items that are not ongoing, but may happen at
 some point.")
+; Todo keywords
+(setq org-todo-keywords
+  '(sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "APPT(a)" "|"
+             "DONE(d)" "CANCELLED(c)" "DEFERRED(f)"))
 
 ; Keybindings
 (define-key global-map (kbd "C-c a") 'org-agenda)
