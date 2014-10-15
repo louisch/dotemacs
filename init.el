@@ -331,6 +331,15 @@ some point.")
 (setq org-todo-keywords
   '(sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "APPT(a)" "|"
              "DONE(d)" "CANCELLED(c)" "DEFERRED(f)"))
+; Tags
+(setq org-tag-alist
+  '((:startgroup . nil)
+    ("laptop" . ?l) ("desktop" . ?d) ("phone" . ?p)
+    (:endgroup . nil) (:newline . nil)
+    (:startgroup . nil)
+    ("@campus" . ?c) ("@apartment" . ?a) ("@sheffield" . ?s)
+    (:endgroup . nil) (:newline . nil)
+    ("low_energy" . ?o)))
 
 ; Keybindings
 (define-key global-map (kbd "C-c a") 'org-agenda)
