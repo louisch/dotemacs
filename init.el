@@ -306,6 +306,8 @@ Missing packages are installed automatically."
   (concat (file-name-as-directory org-directory) org-file ".org"))
 ; Files and directories used by org
 (setq org-directory "~/org")
+(setq org-mobile-directory
+      (concat (file-name-as-directory org-directory) "MobileOrg"))
 (defvar main-org-file (make-org-file-path "main")
   "The primary org file, containing, amongst other things, the next 
 actions that need to be done at some point.")
