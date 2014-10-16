@@ -351,7 +351,7 @@ some point.")
 ; Use indentation form to display headlines
 (add-hook 'org-mode-hook 'org-indent-mode)
 ; The files that can be used to display the agenda.
-(setq org-agenda-files (list main-org-file))
+(setq org-agenda-files `(,main-org-file))
 ; Capture Templates
 (setq org-capture-templates
   `(("t" "Todo" entry (file+headline ,main-org-file ,tasks-heading)
