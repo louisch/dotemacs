@@ -329,8 +329,8 @@ bills that need to be paid, or notes from an ongoing project.")
 some point.")
 ; Todo keywords
 (setq org-todo-keywords
-  '(sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "APPT(a)" "|"
-             "DONE(d)" "CANCELLED(c)" "DEFERRED(f)"))
+  '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "APPT(a)" "|"
+              "DONE(d)" "CANCELLED(c)" "DEFERRED(f)")))
 ; Tags
 (setq org-tag-alist
   '((:startgroup . nil)
