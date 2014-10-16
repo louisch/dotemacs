@@ -289,6 +289,8 @@ Missing packages are installed automatically."
 (fset 'yes-or-no-p 'y-or-n-p)
 ; Do not confirm when file or buffer does not exist
 (setq confirm-nonexistent-file-or-buffer nil)
+; Enable debug information on error
+(setq debug-on-error t)
 
 ;; Additional keybindings
 (evil-leader/set-key
