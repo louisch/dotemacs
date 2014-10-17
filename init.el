@@ -324,8 +324,10 @@ bills that need to be paid, or notes from an ongoing project.")
   "The heading for the list of projects ongoing.")
 (defvar notes-heading "Journal"
   "The heading for the list of general text notes.")
-(defvar bills-heading "Journal"
-  "The heading for the list of bills")
+(defvar bills-heading "Bills"
+  "The heading for the list of bills.")
+(defvar dates-heading "Calendar"
+  "The heading for the list of notable dates.")
 (defvar someday-heading "Someday/Maybe"
   "The heading for the list of items that are not ongoing, but may happen at
 some point.")
@@ -364,14 +366,17 @@ some point.")
          "* TODO %^{Action}%?\n  %^t\n  %i")
     ("p" "Project" entry
          (file+headline ,(make-org-file-path "projects") ,projects-heading)
-         "* %^{Project}%?\n  %i")
+         "* %^{Project}\n** Next actions\n- %?\n   %i")
     ("r" "For entering something into the reference")
     ("rn" "Note" entry (file+headline ,reference-org-file ,notes-heading)
-          "* %^{Note} %?\n  %T\n  %i")
+          "* %^{Note}%?\n  %T\n  %i")
     ("rp" "Pasted note" entry (file+headline ,reference-org-file ,notes-heading)
-          "* %^{Name of Note} %?\n  %T\n  %x")
+          "* %^{Name of Note}%?\n  %T\n  %x")
     ("rb" "Bill" entry (file+headline ,reference-org-file ,bills-heading)
-          "* %^{Bill} %?\n %^t")
+          "* %^{Bill}%?\n %^t")
+    ("rc" "Notable date" entry
+          (file+headline ,reference-org-file ,dates-heading)
+          "* %^{Name of notable date}%?\n  %T\n  %i")
     ("m" "Someday/Maybe" entry
          (file+headline ,(make-org-file-path "someday") ,someday-heading)
          "* %^{Someday/Maybe}%?\n  %i")))
