@@ -385,3 +385,7 @@ some point.")
   "o" (find-file-command main-org-file))
 ; Use indentation form to display headlines
 (add-hook 'org-mode-hook 'org-indent-mode)
+
+; Pull from MobileOrg on startup
+(require 'org-mobile)
+(org-mobile-pull)
