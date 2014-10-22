@@ -299,6 +299,10 @@ Missing packages are installed automatically."
   "%" 'split-window-right
   "\"" 'split-window-below)
 
+;; C
+(setq c-basic-offset 2)
+(add-to-list 'c-default-style '(other . "k&r"))
+
 
 ;; Org Mode
 (defun make-org-file-path (org-file)
