@@ -291,6 +291,8 @@ Missing packages are installed automatically."
 (setq confirm-nonexistent-file-or-buffer nil)
 ; Save emacs' state upon closing
 (setq desktop-save-mode 1)
+; Enable debug information on error
+(setq debug-on-error t)
 
 ;; Additional keybindings
 (evil-leader/set-key
@@ -298,6 +300,10 @@ Missing packages are installed automatically."
   "i" (find-file-command user-init-file)
   "%" 'split-window-right
   "\"" 'split-window-below)
+
+;; C
+(setq c-basic-offset 2)
+(add-to-list 'c-default-style '(other . "k&r"))
 
 
 ;; Org Mode
@@ -308,16 +314,73 @@ Missing packages are installed automatically."
   (concat (file-name-as-directory org-directory) org-file ".org"))
 ; Files and directories used by org
 (setq org-directory "~/org")
+(setq org-mobile-directory
+      (concat (file-name-as-directory org-directory) "MobileOrg"))
 (defvar main-org-file (make-org-file-path "main")
   "The primary org file, containing, amongst other things, the next 
 actions that need to be done at some point.")
 (defvar reference-org-file (make-org-file-path "reference")
   "Reference. Used for storing any information in text form. For example,
 bills that need to be paid, or notes from an ongoing project.")
+(defvar someday-file (make-org-file-path "someday")
+  "List of things which will be done someday. Inactive actions that will be
+considered for doing at some point.")
 (setq org-default-notes-file main-org-file)
 ; Headings that should be in main
 (defvar tasks-heading "Tasks"
   "The heading for the list of next actions.")
+(defvar projects-heading "Projects"
+  "The heading for the list of projects ongoing.")
+(defvar notes-heading "Journal"
+  "The heading for the list of general text notes.")
+(defvar bills-heading "Bills"
+  "The heading for the list of bills.")
+(defvar dates-heading "Calendar"
+  "The heading for the list of notable dates.")
+(defvar someday-heading "Someday/Maybe"
+  "The heading for the list of items that are not ongoing, but may happen at
+some point.")
+; Todo keywords
+(setq org-todo-keywords
+  '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "APPT(a)" "|"
+              "DONE(d)" "CANCELLED(c)" "DEFERRED(f)")))
+; Tags
+(setq org-tag-alist
+  '((:startgroup . nil)
+    ("laptop" . ?l) ("desktop" . ?d) ("phone" . ?p)
+    (:endgroup . nil) (:newline . nil)
+    (:startgroup . nil)
+    ("@campus" . ?c) ("@apartment" . ?a) ("@sheffield" . ?s)
+    (:endgroup . nil) (:newline . nil)
+    ("low_energy" . ?o)))
+; Capture Templates
+(setq org-capture-templates
+  `(("t" "Todo" entry (file+headline ,main-org-file ,tasks-heading)
+         "* TODO %^{Action}%?\n%i")
+    ("d" "Deadline" entry (file+headline ,main-org-file ,tasks-heading)
+         "* TODO %^{Action}%?\nDEADLINE: %^t\n%i")
+    ("e" "Event" entry (file+headline ,main-org-file ,tasks-heading)
+         "* TODO %^{Action}%?\n%^t\n%i")
+    ("p" "Project" entry
+         (file+headline ,(make-org-file-path "projects") ,projects-heading)
+         "* %^{Project}\n** Next actions\n- %?\n%i")
+    ("r" "For entering something into the reference")
+    ("rn" "Note" entry (file+headline ,reference-org-file ,notes-heading)
+          "* %^{Note}%?\n%T\n%i")
+    ("rp" "Pasted note" entry (file+headline ,reference-org-file ,notes-heading)
+          "* %^{Name of Note}%?\n%T\n%x")
+    ("rb" "Bill" entry (file+headline ,reference-org-file ,bills-heading)
+          "* %^{Bill}%?\n%^t")
+    ("rc" "Notable date" entry
+          (file+headline ,reference-org-file ,dates-heading)
+          "* %^{Name of notable date}%?\n%T\n%i")
+    ("m" "Someday/Maybe" entry
+         (file+headline ,someday-file ,someday-heading)
+         "* %^{Someday/Maybe}%?\n%i")))
+; Agenda Files
+(setq org-agenda-files `(,main-org-file
+                         ,reference-org-file
+                         ,someday-file))
 
 ; Keybindings
 (define-key global-map (kbd "C-c a") 'org-agenda)
@@ -328,26 +391,19 @@ bills that need to be paid, or notes from an ongoing project.")
   "o" (find-file-command main-org-file))
 ; Use indentation form to display headlines
 (add-hook 'org-mode-hook 'org-indent-mode)
-; The files that can be used to display the agenda.
-(setq org-agenda-files (list main-org-file))
-; Capture Templates
-(setq org-capture-templates
-  '(("t" "Todo" entry (file+headline main-org-file "Tasks")
-         "* TODO %^{Action}%?\n  %i")
-    ("d" "Deadline" entry (file+headline main-org-file "Tasks")
-         "* TODO %^{Action}%?\n  DEADLINE: %^t\n  %i")
-    ("e" "Event" entry (file+headline main-org-file "Tasks")
-         "* TODO %^{Action}%?\n  %^t\n  %i")
-    ("p" "Project" entry
-         (file+headline (make-org-file-path "projects") "Projects")
-         "* %^{Project}%?\n  %i")
-    ("r" "For entering something into the reference")
-    ("rn" "Note" entry (file+headline reference-org-file "Journal")
-          "* %^{Note} %?\n  %T\n  %i")
-    ("rp" "Pasted note" entry (file+headline reference-org-file "Journal")
-          "* %^{Name of Note} %?\n  %T\n  %x")
-    ("rb" "Bill" entry (file+headline reference-org-file "Financial")
-          "* %^{Bill} %?\n %^t")
-    ("m" "Someday/Maybe" entry
-         (file+headline (make-org-file-path "someday") "Someday/Maybe")
-         "* %^{Someday/Maybe}%?\n  %i")))
+
+; Pull from MobileOrg on startup
+(require 'org-mobile)
+(org-mobile-pull)
+
+; Push to MobileOrg when saving org files
+(add-hook 
+ 'after-save-hook 
+ (lambda ()
+   (let (; The filenames inside the org-directory, without their path prefixes.
+         (org-filenames (mapcar 'file-name-nondirectory
+                                (directory-files org-directory)))
+         ; The filename of the buffer being saved, without its path prefix.
+         (buffer-filename (file-name-nondirectory buffer-file-name)))
+     (if (find buffer-filename org-filenames :test #'string=)
+         (org-mobile-push)))))
