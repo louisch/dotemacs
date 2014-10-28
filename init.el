@@ -4,9 +4,9 @@
 
 (require 'cl)
 (require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "https://marmalade-repo.org/packages/") t)
 ;; List of package archives
+                                        ; (add-to-list 'package-archives
+                                        ;              '("marmalade" . "https://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 
@@ -46,6 +46,7 @@ Missing packages are installed automatically."
     aggressive-indent
     anzu
     auto-complete
+    auctex
     evil
     evil-leader
     evil-paredit
@@ -119,6 +120,10 @@ Missing packages are installed automatically."
 (global-anzu-mode +1)
 (global-set-key (kbd "M-%") 'anzu-query-replace)
 (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
+
+;; AUCTeX
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
 
 ;; Auto-Complete
 ;; Provide auto-complete for identifiers in a program
