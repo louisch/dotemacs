@@ -403,7 +403,7 @@ some point.")
 
 ;; Pull from MobileOrg on startup
 (require 'org-mobile)
-(org-mobile-pull)
+(add-hook 'after-init-hook 'org-mobile-pull)
 
 ;; Push to MobileOrg when saving org files
 (add-hook 
