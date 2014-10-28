@@ -124,6 +124,7 @@ Missing packages are installed automatically."
 ;; AUCTeX
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
+(setq TeX-PDF-mode t) ; Use pdfs rather than dvi files
 
 ;; Auto-Complete
 ;; Provide auto-complete for identifiers in a program
