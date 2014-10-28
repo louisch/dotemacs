@@ -43,6 +43,7 @@ Missing packages are installed automatically."
 (defvar my-packages
   '(ace-jump-mode
     ack-and-a-half
+    aggressive-indent
     anzu
     auto-complete
     evil
@@ -108,6 +109,11 @@ Missing packages are installed automatically."
 (defalias 'ack-same 'ack-and-a-half-same)
 (defalias 'ack-find-file 'ack-and-a-half-find-file)
 (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
+
+; Aggressive Indent
+(global-aggressive-indent-mode 1)
+; List of modes to not use aggressive indent in.
+(add-to-list 'aggressive-indent-excluded-modes 'html-mode 'org-mode)
 
 ; Anzu
 (global-anzu-mode +1)
