@@ -4,18 +4,18 @@
 
 (require 'cl)
 (require 'package)
-; List of package archives
 (add-to-list 'package-archives
              '("marmalade" . "https://marmalade-repo.org/packages/") t)
+;; List of package archives
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 
-; Initialise packages
+;; Initialise packages
 (package-initialize)
 (package-refresh-contents)
 
 
-; Functions for installing and managing packages taken from Emacs Prelude
+;; Functions for installing and managing packages taken from Emacs Prelude
 (defun packages-installed-p ()
   "Check if all packages in `my-packages' are installed."
   (every #'package-installed-p my-packages))
@@ -77,51 +77,51 @@ Missing packages are installed automatically."
 
     markdown-mode)
   "A list of packages to ensure are installed at launch")
-; Install all above packages
+;; Install all above packages
 (install-packages)
 
 
 ;; Package configuration:
 
-; NOTE: Evil must be placed before anything else because the evil variables need
-; to be set before any call to an evil function is made. Evil-leader/set-key is
-; included in this requirement.
-
-; Evil
-; Provide vim keybindings to emacs
-; The following variables should be set before evil is loaded via require
+;; NOTE: Evil must be placed before anything else because the evil variables need
+;; to be set before any call to an evil function is made. Evil-leader/set-key is
+;; included in this requirement.
+;;
+;; Evil
+;; Provide vim keybindings to emacs
+;; The following variables should be set before evil is loaded via require
 (setq-default evil-search-module 'evil-search
               evil-want-C-u-scroll t
               evil-want-C-w-in-emacs-state t)
 (require 'evil)
 (evil-mode 1)
-; Enable evil-leader
+;; Enable evil-leader
 (require 'evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
 
-; Ace Jump Mode
+;; Ace Jump Mode
 (evil-leader/set-key "<SPC>" 'ace-jump-mode)
 
-; Ack-and-a-half
+;; Ack-and-a-half
 (require 'ack-and-a-half)
 (defalias 'ack 'ack-and-a-half)
 (defalias 'ack-same 'ack-and-a-half-same)
 (defalias 'ack-find-file 'ack-and-a-half-find-file)
 (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
 
-; Aggressive Indent
+;; Aggressive Indent
 (global-aggressive-indent-mode 1)
-; List of modes to not use aggressive indent in.
+;; List of modes to not use aggressive indent in.
 (add-to-list 'aggressive-indent-excluded-modes 'html-mode 'org-mode)
 
-; Anzu
+;; Anzu
 (global-anzu-mode +1)
 (global-set-key (kbd "M-%") 'anzu-query-replace)
 (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
 
-; Auto-Complete
-; Provide auto-complete for identifiers in a program
+;; Auto-Complete
+;; Provide auto-complete for identifiers in a program
 (require 'auto-complete)
 (add-to-list 'ac-dictionary-directories (concat user-emacs-directory "ac-dict"))
 (require 'auto-complete-config)
@@ -129,7 +129,7 @@ Missing packages are installed automatically."
 (ac-linum-workaround)
 (setq ac-ignore-case t)
 
-; flx
+;; flx
 (require 'flx-ido)
 (ido-mode 1)
 (ido-everywhere 1)
@@ -137,70 +137,70 @@ Missing packages are installed automatically."
 ;; disable ido faces to see flx highlights
 (setq ido-use-faces nil)
 
-; Helm
-; Save files in an index, as projects
+;; Helm
+;; Save files in an index, as projects
 (require 'helm-config)
-; Enable helm from the get-go
+;; Enable helm from the get-go
 (helm-mode 1)
-; Reverse the bindings of persistent action and select action
+;; Reverse the bindings of persistent action and select action
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-z")  'helm-select-action)
-; Replace default commands with helm alternatives
+;; Replace default commands with helm alternatives
 (define-key evil-normal-state-map (kbd ";") 'helm-M-x)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
-; Use more convenient binding for helm's kill ring
+;; Use more convenient binding for helm's kill ring
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-; Rebind helm's google suggest to a more convenient binding
+;; Rebind helm's google suggest to a more convenient binding
 (global-set-key (kbd "C-x c g") 'helm-google-suggest)
 (evil-leader/set-key "g" 'helm-google-suggest)
 
-; Linum
-; Display line numbers
+;; Linum
+;; Display line numbers
 (require 'linum)
 (require 'linum-relative)
 (add-hook 'find-file-hook (lambda ()
                             (hl-line-mode)
                             (linum-mode)))
 
-; Magit
-; Provide an interface to git from emacs
+;; Magit
+;; Provide an interface to git from emacs
 (evil-leader/set-key "m" 'magit-status)
 
-; Paredit
-; Provide extra functionality for manipulating parentheses
+;; Paredit
+;; Provide extra functionality for manipulating parentheses
 (require 'evil-paredit)
 
-; Powerline
+;; Powerline
 (require 'powerline)
 (powerline-evil-center-color-theme)
 (require 'powerline-evil)
 
-; Projectile
+;; Projectile
 (require 'projectile)
 (projectile-global-mode)
 (setq projectile-enable-caching t)
 
-; Saveplace
-; Save the location of point when closing the file
+;; Saveplace
+;; Save the location of point when closing the file
 (require 'saveplace)
 (setq-default saveplace t)
-; Change the default save location to be in the user emacs directory
+;; Change the default save location to be in the user emacs directory
 (setq save-place-file (concat user-emacs-directory "places"))
 
-; Smartparens
-; Provide several features for manipulating delimiter pairs, including parens
+;; Smartparens
+;; Provide several features for manipulating delimiter pairs, including parens
 (smartparens-global-mode t)
 (require 'smartparens-config)
-; Show matching pairs when cursor is on one of them
+;; Show matching pairs when cursor is on one of them
 (show-smartparens-global-mode t)
 (setq sp-show-pair-from-inside t)
-; Consider strings as sexps in smartparens in the following modes:
+;; Consider strings as sexps in smartparens in the following modes:
 (nconc sp-navigate-consider-stringlike-sexp
        '(emacs-lisp-mode csharp-mode python-mode))
-; Keybindings for Smartparens, for evil
+;; Keybindings for Smartparens, for evil
 (define-key evil-normal-state-map (kbd "C-M-f") 'sp-forward-sexp)
 (define-key evil-normal-state-map (kbd "C-M-b") 'sp-backward-sexp)
 (define-key evil-normal-state-map (kbd "C-M-d") 'sp-down-sexp)
@@ -209,36 +209,40 @@ Missing packages are installed automatically."
 (define-key evil-normal-state-map (kbd "C-S-d") 'sp-end-of-sexp)
 (define-key evil-normal-state-map (kbd "M-<backspace>") 'sp-unwrap-sexp)
 
-; Uniquify
-; When two buffers have the same name, distinguish them by their containing
-; directories
+;; Uniquify
+;; When two buffers have the same name, distinguish them by their containing
+;; directories
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
-; Volatile Highlights
+;; Volatile Highlights
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 (vhl/define-extension 'yank 'evil-paste-after 'evil-paste-before)
 
-; YASnippet
-; Provides snippets like Textmate. Use certain keywords and press TAB to expand
-; into oft-used programming constructs.
+;; YASnippet
+;; Provides snippets like Textmate. Use certain keywords and press TAB to expand
+;; into oft-used programming constructs.
 (require 'yasnippet)
 (yas-global-mode 1)
 
 
-;; Language-specific:
-; C Sharp
+;;; Language-specific:
+
+;; C Sharp
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
-  (setq auto-mode-alist
-     (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
+(setq auto-mode-alist
+      (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
 (setq c-default-style '((csharp-mode . "c#")))
 (add-to-list 'ac-modes 'csharp-mode)
-; Clojure
+
+;; Clojure
 (add-hook 'clojure-mode-hook 'evil-paredit-mode)
-; Haskell
+
+;; Haskell
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-; Markdown
+
+;; Markdown
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
@@ -246,58 +250,56 @@ Missing packages are installed automatically."
 
 ;;; Core Configuration
 
-; Support functions
+;; Support functions
 (defun find-file-command (a-file)
   "Return a command that will find the given file."
   (lambda () (interactive) (find-file a-file)))
 
 ;; Appearance
-; Turn off toolbar and scrollbar
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
-; Line length of 79
+;; Turn off toolbar and scrollbar
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+;; Line length of 79
 (setq-default fill-column 79)
-; Custom theme
+;; Custom theme
 (load-theme 'solarized-dark t)
-; Set frames to have width 84 (enough space to display 80 characters), and full
-; screen height.
+;; Set frames to have width 84 (enough space to display 80 characters), and full
+;; screen height.
 (add-to-list 'default-frame-alist '(left . 0))
 (add-to-list 'default-frame-alist '(top . 0))
 (add-to-list 'default-frame-alist '(width . 84))
 (add-to-list 'default-frame-alist '(fullscreen . fullheight))
-; Turn column numbers on in the modeline
+;; Turn column numbers on in the modeline
 (setq column-number-mode t)
-; Show trailing whitespace
+;; Show trailing whitespace
 (setq show-trailing-whitespace t)
 
 ;; Behaviour
-; Focus the initial window on startup
+;; Focus the initial window on startup
 (x-focus-frame nil)
-; Set an absolute backup directory, placing it in the emacs config dir
+;; Set an absolute backup directory, placing it in the emacs config dir
 (setq backup-directory-alist
       (list (cons "." (concat user-emacs-directory "backups"))))
-; Indentation
+;; Indentation
 (setq-default indent-tabs-mode nil) ; Spaces only for indentation
 (setq tab-width 4
       c-basic-offset 4)
-; Add custom plugins directory to load-path
+;; Add custom plugins directory to load-path
 (add-to-list 'load-path (concat user-emacs-directory "custom"))
-; apropos will show everything, including functions
+;; apropos will show everything, including functions
 (setq apropos-do-all t)
-; Rebind several common operations to use the leader key
+;; Rebind several common operations to use the leader key
 (evil-leader/set-key
   "s" 'save-buffer
   "e" 'helm-find-files
   "b" 'helm-mini)
-; Replace yes-or-no with y-or-n prompt
+;; Replace yes-or-no with y-or-n prompt
 (fset 'yes-or-no-p 'y-or-n-p)
-; Do not confirm when file or buffer does not exist
+;; Do not confirm when file or buffer does not exist
 (setq confirm-nonexistent-file-or-buffer nil)
-; Save emacs' state upon closing
+;; Save emacs' state upon closing
 (setq desktop-save-mode 1)
-; Enable debug information on error
+;; Enable debug information on error
 (setq debug-on-error t)
 
 ;; Additional keybindings
@@ -318,7 +320,7 @@ Missing packages are installed automatically."
 
   Also adds the extension."
   (concat (file-name-as-directory org-directory) org-file ".org"))
-; Files and directories used by org
+;; Files and directories used by org
 (setq org-directory "~/org")
 (setq org-mobile-directory
       (concat (file-name-as-directory org-directory) "MobileOrg"))
@@ -332,7 +334,7 @@ bills that need to be paid, or notes from an ongoing project.")
   "List of things which will be done someday. Inactive actions that will be
 considered for doing at some point.")
 (setq org-default-notes-file main-org-file)
-; Headings that should be in main
+;; Headings that should be in main
 (defvar tasks-heading "Tasks"
   "The heading for the list of next actions.")
 (defvar projects-heading "Projects"
@@ -346,70 +348,71 @@ considered for doing at some point.")
 (defvar someday-heading "Someday/Maybe"
   "The heading for the list of items that are not ongoing, but may happen at
 some point.")
-; Todo keywords
+;; Todo keywords
 (setq org-todo-keywords
-  '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "APPT(a)" "|"
-              "DONE(d)" "CANCELLED(c)" "DEFERRED(f)")))
-; Tags
+      '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "APPT(a)" "|"
+                  "DONE(d)" "CANCELLED(c)" "DEFERRED(f)")))
+;; Tags
 (setq org-tag-alist
-  '((:startgroup . nil)
-    ("laptop" . ?l) ("desktop" . ?d) ("phone" . ?p)
-    (:endgroup . nil) (:newline . nil)
-    (:startgroup . nil)
-    ("@campus" . ?c) ("@apartment" . ?a) ("@sheffield" . ?s)
-    (:endgroup . nil) (:newline . nil)
-    ("low_energy" . ?o)))
-; Capture Templates
+      '((:startgroup . nil)
+        ("laptop" . ?l) ("desktop" . ?d) ("phone" . ?p)
+        (:endgroup . nil) (:newline . nil)
+        (:startgroup . nil)
+        ("@campus" . ?c) ("@apartment" . ?a) ("@sheffield" . ?s)
+        (:endgroup . nil) (:newline . nil)
+        ("low_energy" . ?o)))
+;; Capture Templates
 (setq org-capture-templates
-  `(("t" "Todo" entry (file+headline ,main-org-file ,tasks-heading)
+      `(("t" "Todo" entry (file+headline ,main-org-file ,tasks-heading)
          "* TODO %^{Action}%?\n%i")
-    ("d" "Deadline" entry (file+headline ,main-org-file ,tasks-heading)
+        ("d" "Deadline" entry (file+headline ,main-org-file ,tasks-heading)
          "* TODO %^{Action}%?\nDEADLINE: %^t\n%i")
-    ("e" "Event" entry (file+headline ,main-org-file ,tasks-heading)
+        ("e" "Event" entry (file+headline ,main-org-file ,tasks-heading)
          "* TODO %^{Action}%?\n%^t\n%i")
-    ("p" "Project" entry
+        ("p" "Project" entry
          (file+headline ,(make-org-file-path "projects") ,projects-heading)
          "* %^{Project}\n** Next actions\n- %?\n%i")
-    ("r" "For entering something into the reference")
-    ("rn" "Note" entry (file+headline ,reference-org-file ,notes-heading)
-          "* %^{Note}%?\n%T\n%i")
-    ("rp" "Pasted note" entry (file+headline ,reference-org-file ,notes-heading)
-          "* %^{Name of Note}%?\n%T\n%x")
-    ("rb" "Bill" entry (file+headline ,reference-org-file ,bills-heading)
-          "* %^{Bill}%?\n%^t")
-    ("rc" "Notable date" entry
-          (file+headline ,reference-org-file ,dates-heading)
-          "* %^{Name of notable date}%?\n%T\n%i")
-    ("m" "Someday/Maybe" entry
+        ("r" "For entering something into the reference")
+        ("rn" "Note" entry (file+headline ,reference-org-file ,notes-heading)
+         "* %^{Note}%?\n%T\n%i")
+        ("rp" "Pasted note" entry (file+headline ,reference-org-file
+                                                 ,notes-heading)
+         "* %^{Name of Note}%?\n%T\n%x")
+        ("rb" "Bill" entry (file+headline ,reference-org-file ,bills-heading)
+         "* %^{Bill}%?\n%^t")
+        ("rc" "Notable date" entry
+         (file+headline ,reference-org-file ,dates-heading)
+         "* %^{Name of notable date}%?\n%T\n%i")
+        ("m" "Someday/Maybe" entry
          (file+headline ,someday-file ,someday-heading)
          "* %^{Someday/Maybe}%?\n%i")))
-; Agenda Files
+;; Agenda Files
 (setq org-agenda-files `(,main-org-file
                          ,reference-org-file
                          ,someday-file))
 
-; Keybindings
+;; Keybindings
 (define-key global-map (kbd "C-c a") 'org-agenda)
 (define-key global-map (kbd "C-c b") 'org-iswitchb)
 (define-key global-map (kbd "C-c c") 'org-capture)
 (define-key global-map (kbd "C-c l") 'org-store-link)
 (evil-leader/set-key
   "o" (find-file-command main-org-file))
-; Use indentation form to display headlines
+;; Use indentation form to display headlines
 (add-hook 'org-mode-hook 'org-indent-mode)
 
-; Pull from MobileOrg on startup
+;; Pull from MobileOrg on startup
 (require 'org-mobile)
 (org-mobile-pull)
 
-; Push to MobileOrg when saving org files
+;; Push to MobileOrg when saving org files
 (add-hook 
  'after-save-hook 
  (lambda ()
-   (let (; The filenames inside the org-directory, without their path prefixes.
+   (let (;; The filenames inside the org-directory, without their path prefixes.
          (org-filenames (mapcar 'file-name-nondirectory
                                 (directory-files org-directory)))
-         ; The filename of the buffer being saved, without its path prefix.
+         ;; The filename of the buffer being saved, without its path prefix.
          (buffer-filename (file-name-nondirectory buffer-file-name)))
      (if (find buffer-filename org-filenames :test #'string=)
          (org-mobile-push)))))
