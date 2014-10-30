@@ -315,6 +315,10 @@ Missing packages are installed automatically."
   "%" 'split-window-right
   "\"" 'split-window-below)
 
+;; ANTLR
+(setq auto-mode-alist
+      (append '(("\\.g4$" . antlr-mode)) auto-mode-alist))
+
 ;; C
 (setq c-basic-offset 2)
 (add-to-list 'c-default-style '(other . "k&r"))
