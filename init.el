@@ -175,6 +175,19 @@ Missing packages are installed automatically."
 ;; Provide an interface to git from emacs
 (evil-leader/set-key "m" 'magit-status)
 
+;; Malabar Mode
+(setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
+                                  global-semanticdb-minor-mode
+                                  global-semantic-idle-summary-mode
+                                  global-semantic-mru-bookmark-mode))
+(semantic-mode 1)
+(require 'malabar-mode)
+(add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
+(add-hook 'malabar-mode-hook
+          (lambda ()
+            (add-hook 'after-save-hook 'malabar-compile-file-silently
+                      nil t)))
+
 ;; Paredit
 ;; Provide extra functionality for manipulating parentheses
 (require 'evil-paredit)
@@ -279,6 +292,8 @@ Missing packages are installed automatically."
 (setq column-number-mode t)
 ;; Show trailing whitespace
 (setq show-trailing-whitespace t)
+;; Coding system
+(prefer-coding-system 'utf-8)
 
 ;; Behaviour
 ;; Focus the initial window on startup
@@ -296,7 +311,8 @@ Missing packages are installed automatically."
 (setq apropos-do-all t)
 ;; Rebind several common operations to use the leader key
 (evil-leader/set-key
-  "s" 'save-buffer
+  "s" (lambda () (interactive)
+        (progn (delete-trailing-whitespace) (save-buffer)))
   "e" 'helm-find-files
   "b" 'helm-mini)
 ;; Replace yes-or-no with y-or-n prompt
@@ -325,17 +341,17 @@ Missing packages are installed automatically."
 
 
 ;; Org Mode
+(setq org-directory "~/org")
 (defun make-org-file-path (org-file)
   "A function that gets the full path of a file in the org-directory.
 
-  Also adds the extension."
+Also adds the extension."
   (concat (file-name-as-directory org-directory) org-file ".org"))
 ;; Files and directories used by org
-(setq org-directory "~/org")
 (setq org-mobile-directory
       (concat (file-name-as-directory org-directory) "MobileOrg"))
 (defvar main-org-file (make-org-file-path "main")
-  "The primary org file, containing, amongst other things, the next 
+  "The primary org file, containing, amongst other things, the next
 actions that need to be done at some point.")
 (defvar reference-org-file (make-org-file-path "reference")
   "Reference. Used for storing any information in text form. For example,
@@ -379,6 +395,8 @@ some point.")
          "* TODO %^{Action}%?\nDEADLINE: %^t\n%i")
         ("e" "Event" entry (file+headline ,main-org-file ,tasks-heading)
          "* TODO %^{Action}%?\n%^t\n%i")
+        ("w" "Waiting" entry (file+headline ,main-org-file ,tasks-heading)
+         "* WAITING %^{Action}%?\n%i")
         ("p" "Project" entry
          (file+headline ,(make-org-file-path "projects") ,projects-heading)
          "* %^{Project}\n** Next actions\n- %?\n%i")
@@ -416,8 +434,8 @@ some point.")
 (add-hook 'after-init-hook 'org-mobile-pull)
 
 ;; Push to MobileOrg when saving org files
-(add-hook 
- 'after-save-hook 
+(add-hook
+ 'after-save-hook
  (lambda ()
    (let (;; The filenames inside the org-directory, without their path prefixes.
          (org-filenames (mapcar 'file-name-nondirectory
