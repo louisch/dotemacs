@@ -4,7 +4,12 @@ auto-save-list
 backups
 bookmarks
 elpa
+ido.last
+kkcrc
 places
 projectile-bookmarks.eld
 projectile.cache
+semanticdb/
+server/
+srecode-map.el
 url
