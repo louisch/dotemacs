@@ -363,6 +363,8 @@ considered for doing at some point.")
 ;; Headings that should be in main
 (defvar tasks-heading "Tasks"
   "The heading for the list of next actions.")
+(defvar events-heading "Events"
+  "The heading for a list of events that will take place in the future.")
 (defvar projects-heading "Projects"
   "The heading for the list of projects ongoing.")
 (defvar notes-heading "Journal"
@@ -393,7 +395,7 @@ some point.")
          "* TODO %^{Action}%?\n%i")
         ("d" "Deadline" entry (file+headline ,main-org-file ,tasks-heading)
          "* TODO %^{Action}%?\nDEADLINE: %^t\n%i")
-        ("e" "Event" entry (file+headline ,main-org-file ,tasks-heading)
+        ("e" "Event" entry (file+headline ,main-org-file ,events-heading)
          "* TODO %^{Action}%?\n%^t\n%i")
         ("w" "Waiting" entry (file+headline ,main-org-file ,tasks-heading)
          "* WAITING %^{Action}%?\n%i")
