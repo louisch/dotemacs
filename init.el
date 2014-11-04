@@ -382,12 +382,12 @@ some point.")
                   "DONE(d)" "CANCELLED(c)" "DEFERRED(f)")))
 ;; Tags
 (setq org-tag-alist
-      '((:startgroup . nil)
+      '((:startgroup)
         ("laptop" . ?l) ("desktop" . ?d) ("phone" . ?p)
-        (:endgroup . nil) (:newline . nil)
-        (:startgroup . nil)
+        (:endgroup)
+        (:startgroup)
         ("@campus" . ?c) ("@apartment" . ?a) ("@sheffield" . ?s)
-        (:endgroup . nil) (:newline . nil)
+        (:endgroup)
         ("low_energy" . ?o)))
 ;; Capture Templates
 (setq org-capture-templates
