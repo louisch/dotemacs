@@ -435,14 +435,5 @@ some point.")
 (require 'org-mobile)
 (add-hook 'after-init-hook 'org-mobile-pull)
 
-;; Push to MobileOrg when saving org files
-(add-hook
- 'after-save-hook
- (lambda ()
-   (let (;; The filenames inside the org-directory, without their path prefixes.
-         (org-filenames (mapcar 'file-name-nondirectory
-                                (directory-files org-directory)))
-         ;; The filename of the buffer being saved, without its path prefix.
-         (buffer-filename (file-name-nondirectory buffer-file-name)))
-     (if (find buffer-filename org-filenames :test #'string=)
-         (org-mobile-push)))))
+;; Push to MobileOrg on exit
+(add-hook 'kill-emacs-hook 'org-mobile-push)
