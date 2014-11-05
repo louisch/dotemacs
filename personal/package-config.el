@@ -18,6 +18,7 @@
 (require 'evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
+;; Fine grained undo
 (setq evil-want-fine-undo t)
 
 ;; Ace Jump Mode
