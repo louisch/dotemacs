@@ -25,6 +25,8 @@
 ;; Configure searching
 (setq evil-regex-search t)
 (setq evil-search-wrap t)
+;; Use C-u for scrolling
+(setq evil-want-C-u-scroll t)
 
 ;; Ace Jump Mode
 (evil-leader/set-key "<SPC>" 'ace-jump-mode)
