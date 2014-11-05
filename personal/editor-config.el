@@ -47,9 +47,6 @@
 (setq backup-directory-alist
       (list (cons "." (concat user-emacs-directory "backups"))))
 
-;; Add custom plugins directory to load-path
-(add-to-list 'load-path (concat user-emacs-directory "custom"))
-
 ;; apropos will show everything, including functions
 (setq apropos-do-all t)
 
