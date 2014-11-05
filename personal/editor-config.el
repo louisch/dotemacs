@@ -65,6 +65,7 @@
 
 
 ;; Keybindings
+(define-key evil-normal-state-map "," 'universal-argument)
 (evil-leader/set-key
   "s" (lambda () (interactive)
         (progn (delete-trailing-whitespace) (save-buffer)))
