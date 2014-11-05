@@ -50,32 +50,36 @@ some point.")
         (:endgroup)
         ("low_energy" . ?o)))
 ;; Capture Templates
-(setq org-capture-templates
-      `(("t" "Todo" entry (file+headline ,main-org-file ,tasks-heading)
-         "* TODO %^{Action}%?\n%i")
-        ("d" "Deadline" entry (file+headline ,main-org-file ,tasks-heading)
-         "* TODO %^{Action}%?\nDEADLINE: %^t\n%i")
-        ("e" "Event" entry (file+headline ,main-org-file ,events-heading)
-         "* TODO %^{Action}%?\n%^t\n%i")
-        ("w" "Waiting" entry (file+headline ,main-org-file ,tasks-heading)
-         "* WAITING %^{Action}%?\n%i")
-        ("p" "Project" entry
-         (file+headline ,(make-org-file-path "projects") ,projects-heading)
-         "* %^{Project}\n** Next actions\n- %?\n%i")
-        ("r" "For entering something into the reference")
-        ("rn" "Note" entry (file+headline ,reference-org-file ,notes-heading)
-         "* %^{Note}%?\n%T\n%i")
-        ("rp" "Pasted note" entry (file+headline ,reference-org-file
-                                                 ,notes-heading)
-         "* %^{Name of Note}%?\n%T\n%x")
-        ("rb" "Bill" entry (file+headline ,reference-org-file ,bills-heading)
-         "* %^{Bill}%?\n%^t")
-        ("rc" "Notable date" entry
-         (file+headline ,reference-org-file ,dates-heading)
-         "* %^{Name of notable date}%?\n%T\n%i")
-        ("m" "Someday/Maybe" entry
-         (file+headline ,someday-file ,someday-heading)
-         "* %^{Someday/Maybe}%?\n%i")))
+(let ((undecided-heading "Undecided"))
+  (setq org-capture-templates
+        `(("t" "Todo" entry (file+olp ,main-org-file
+                                      ,tasks-heading ,undecided-heading)
+           "* TODO %^{Action}%?\n%i")
+          ("d" "Deadline" entry (file+olp ,main-org-file
+                                          ,tasks-heading ,undecided-heading)
+           "* TODO %^{Action}%?\nDEADLINE: %^t\n%i")
+          ("e" "Event" entry (file+olp ,main-org-file
+                                       ,tasks-heading ,events-heading)
+           "* TODO %^{Action}%?\n%^t\n%i")
+          ("w" "Waiting" entry (file+headline ,main-org-file ,tasks-heading)
+           "* WAITING %^{Action}%?\n%i")
+          ("p" "Project" entry
+           (file+headline ,(make-org-file-path "projects") ,projects-heading)
+           "* %^{Project}\n** Next actions\n- %?\n%i")
+          ("r" "For entering something into the reference")
+          ("rn" "Note" entry (file+headline ,reference-org-file ,notes-heading)
+           "* %^{Note}%?\n%T\n%i")
+          ("rp" "Pasted note" entry (file+headline ,reference-org-file
+                                                   ,notes-heading)
+           "* %^{Name of Note}%?\n%T\n%x")
+          ("rb" "Bill" entry (file+headline ,reference-org-file ,bills-heading)
+           "* %^{Bill}%?\n%^t")
+          ("rc" "Notable date" entry
+           (file+headline ,reference-org-file ,dates-heading)
+           "* %^{Name of notable date}%?\n%T\n%i")
+          ("m" "Someday/Maybe" entry
+           (file+headline ,someday-file ,someday-heading)
+           "* %^{Someday/Maybe}%?\n%i"))))
 ;; Agenda Files
 (setq org-agenda-files `(,main-org-file
                          ,reference-org-file
