@@ -47,7 +47,7 @@
 (setq backup-directory-alist
       (list (cons "." (concat user-emacs-directory "backups"))))
 
-;; apropos will show everything, including functions
+;; help apropos will show everything, including functions
 (setq apropos-do-all t)
 
 ;; Rebind several common operations to use the leader key
