@@ -31,9 +31,6 @@
 ;; Turn column numbers on in the modeline
 (setq column-number-mode t)
 
-;; Show trailing whitespace
-(setq show-trailing-whitespace t)
-
 
 ;; Behaviour
 
