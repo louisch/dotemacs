@@ -20,6 +20,8 @@
 (evil-leader/set-leader "<SPC>")
 ;; Fine grained undo
 (setq evil-want-fine-undo t)
+;; < and > shift width
+(setq-default evil-shift-width 2)
 
 ;; Ace Jump Mode
 (evil-leader/set-key "<SPC>" 'ace-jump-mode)
