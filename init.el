@@ -4,8 +4,7 @@
 (defvar personal-dir (concat user-emacs-directory "personal")
   "Directory containing personal configuration files to load at initialization.")
 (add-to-list 'load-path personal-dir)
-;; Require packages in modules/
-(mapc 'load (directory-files personal-dir nil "^[^#].*el$"))
+(load "package-setup.el")
 
 ;; Package configuration:
 
@@ -169,7 +168,6 @@
 ;; into oft-used programming constructs.
 (require 'yasnippet)
 (yas-global-mode 1)
-
 
 ;;; Language-specific:
 
