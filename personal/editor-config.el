@@ -11,6 +11,7 @@
 ;; Appearance
 
 ;; Turn off toolbar and scrollbar
+;; Menu bar is left on just in case
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
@@ -32,9 +33,6 @@
 
 ;; Show trailing whitespace
 (setq show-trailing-whitespace t)
-
-;; Coding system
-(prefer-coding-system 'utf-8)
 
 
 ;; Behaviour
@@ -59,6 +57,9 @@
 
 ;; Enable debug information on error
 (setq debug-on-error t)
+
+;; Coding system
+(prefer-coding-system 'utf-8)
 
 
 ;; Keybindings
