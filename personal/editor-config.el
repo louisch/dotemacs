@@ -15,8 +15,8 @@
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-;; Line length of 79
-(setq-default fill-column 79)
+;; Line length of 80
+(setq-default fill-column 80)
 
 ;; Custom theme
 (load-theme 'solarized-dark t)
