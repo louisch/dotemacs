@@ -2,9 +2,9 @@
 
 ;;; Package configuration:
 
-;; NOTE: Evil must be placed before anything else because the evil variables need
-;; to be set before any call to an evil function is made. Evil-leader/set-key is
-;; included in this requirement.
+;; NOTE: Evil must be placed before anything else because the evil variables
+;; need to be set before any call to an evil function is made.
+;; Evil-leader/set-key is included in this requirement.
 ;;
 ;; Evil
 ;; Provide vim keybindings to emacs
