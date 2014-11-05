@@ -39,14 +39,14 @@
 
 ;; Behaviour
 
-;; Set an absolute backup directory, placing it in the emacs config dir
-(setq backup-directory-alist
-      (list (cons "." (concat user-emacs-directory "backups"))))
-
 ;; Indentation
 (setq-default indent-tabs-mode nil) ; Spaces only for indentation
 (setq tab-width 4
       c-basic-offset 4)
+
+;; Set an absolute backup directory, placing it in the emacs config dir
+(setq backup-directory-alist
+      (list (cons "." (concat user-emacs-directory "backups"))))
 
 ;; Add custom plugins directory to load-path
 (add-to-list 'load-path (concat user-emacs-directory "custom"))
