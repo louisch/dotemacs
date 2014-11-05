@@ -41,8 +41,7 @@
 
 ;; Indentation
 (setq-default indent-tabs-mode nil) ; Spaces only for indentation
-(setq tab-width 2
-      c-basic-offset 2)
+(setq tab-width 2)
 
 ;; Set an absolute backup directory, placing it in the emacs config dir
 (setq backup-directory-alist
