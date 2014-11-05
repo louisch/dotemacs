@@ -40,6 +40,8 @@
 ;; Indentation
 (setq-default indent-tabs-mode nil) ; Spaces only for indentation
 (setq-default tab-width 2)
+;; Require newline at end of files
+(setq require-final-newline t)
 
 ;; Backup directory
 (setq backup-directory-alist
