@@ -29,8 +29,8 @@
   "Ensure PACKAGES are installed.
 Missing packages are installed automatically."
   (mapc #'require-package my-packages))
-(defun install-packages ()
-  "Install all packages listed in `my-packages'."
+(defun try-install-packages ()
+  "Install any packages listed in `my-packages' if not installed."
   (unless (packages-installed-p)
     ;; check for new packages (package versions)
     (message "%s" "Now refreshing package database...")
@@ -79,7 +79,7 @@ Missing packages are installed automatically."
     markdown-mode)
   "A list of packages to ensure are installed at launch")
 ;; Install all above packages
-(install-packages)
+(try-install-packages)
 
 
 ;; Package configuration:
