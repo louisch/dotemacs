@@ -43,6 +43,9 @@
 ;; Require newline at end of files
 (setq require-final-newline t)
 
+;; Automatically revert files when they are changed externally
+(global-auto-revert-mode t)
+
 ;; Backup directory
 (setq backup-directory-alist
       (list (cons "." (concat user-emacs-directory "backups"))))
