@@ -29,8 +29,6 @@
 (prefer-coding-system 'utf-8)
 
 ;; Behaviour
-;; Focus the initial window on startup
-(x-focus-frame nil)
 ;; Set an absolute backup directory, placing it in the emacs config dir
 (setq backup-directory-alist
       (list (cons "." (concat user-emacs-directory "backups"))))
