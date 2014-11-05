@@ -43,18 +43,15 @@
 (setq-default indent-tabs-mode nil) ; Spaces only for indentation
 (setq-default tab-width 2)
 
-;; Set an absolute backup directory, placing it in the emacs config dir
+;; Backup directory
 (setq backup-directory-alist
       (list (cons "." (concat user-emacs-directory "backups"))))
 
 ;; help apropos will show everything, including functions
 (setq apropos-do-all t)
 
-;; Rebind several common operations to use the leader key
-;; Replace yes-or-no with y-or-n prompt
+;; Make emacs confirmation dialogs shorter
 (fset 'yes-or-no-p 'y-or-n-p)
-
-;; Do not confirm when file or buffer does not exist
 (setq confirm-nonexistent-file-or-buffer nil)
 
 ;; Save emacs' state upon closing
