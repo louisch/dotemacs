@@ -1,6 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
-;;; Core Configuration
+;;; Editor Configuration
 
 ;; Support functions
 (defun find-file-command (a-file)

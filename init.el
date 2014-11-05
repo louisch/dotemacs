@@ -7,5 +7,5 @@
 (load "package-setup.el")
 (load "package-config.el")
 (load "mode-config.el")
-(load "core-config.el")
+(load "editor-config.el")
 (load "org-config.el")
