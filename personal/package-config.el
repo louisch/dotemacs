@@ -22,6 +22,9 @@
 (setq evil-want-fine-undo t)
 ;; < and > shift width
 (setq-default evil-shift-width 2)
+;; Configure searching
+(setq evil-regex-search t)
+(setq evil-search-wrap t)
 
 ;; Ace Jump Mode
 (evil-leader/set-key "<SPC>" 'ace-jump-mode)
