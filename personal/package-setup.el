@@ -50,6 +50,7 @@ Missing packages are installed automatically."
     evil
     evil-leader
     evil-paredit
+    fill-column-indicator
     flx-ido
     flycheck
     git-timemachine

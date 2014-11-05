@@ -62,6 +62,10 @@
 (ac-linum-workaround)
 (setq ac-ignore-case t)
 
+;; Fill Column Indicator
+(require 'fill-column-indicator)
+(add-hook 'prog-mode-hook 'fci-mode)
+
 ;; flx
 (require 'flx-ido)
 (ido-mode 1)
