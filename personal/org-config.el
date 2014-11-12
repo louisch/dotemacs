@@ -52,7 +52,8 @@ some point.")
         (:endgroup)
         ("low_energy" . ?o)))
 ;; Capture Templates
-(let ((undecided-heading "Undecided"))
+(let ((undecided-heading "Undecided")
+      (shopping-list-heading "Shopping List"))
   (setq org-capture-templates
         `(("t" "Todo" entry (file+olp ,main-org-file
                                       ,tasks-heading ,undecided-heading)
@@ -63,6 +64,8 @@ some point.")
           ("e" "Event" entry (file+olp ,main-org-file
                                        ,tasks-heading ,events-heading)
            "* TODO %^{Action}%?\n%^t\n%i")
+          ("t" "Todo" entry (file+olp ,main-org-file ,shopping-list-heading)
+           "* TODO %^{Action}%?\n%i")
           ("p" "Plan Today" entry (file+olp ,main-org-file ,today-plan-heading)
            "* TODO %^{Action}%? %^t")
           ("w" "Waiting" entry (file+headline ,main-org-file ,tasks-heading)
