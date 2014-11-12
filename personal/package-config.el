@@ -65,6 +65,7 @@
 ;; Fill Column Indicator
 (require 'fill-column-indicator)
 (add-hook 'org-mode-hook 'fci-mode)
+(add-hook 'markdown-mode-hook 'fci-mode)
 (add-hook 'prog-mode-hook 'fci-mode)
 
 ;; flx
