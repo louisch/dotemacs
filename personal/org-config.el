@@ -23,6 +23,8 @@ considered for doing at some point.")
 ;; Headings that should be in main
 (defvar tasks-heading "Tasks"
   "The heading for the list of next actions.")
+(defvar today-plan-heading "Today's Plan"
+  "The heading for a list planning today's events")
 (defvar events-heading "Events"
   "The heading for a list of events that will take place in the future.")
 (defvar projects-heading "Projects"
@@ -61,6 +63,8 @@ some point.")
           ("e" "Event" entry (file+olp ,main-org-file
                                        ,tasks-heading ,events-heading)
            "* TODO %^{Action}%?\n%^t\n%i")
+          ("p" "Plan Today" entry (file+olp ,main-org-file ,today-plan-heading)
+           "* TODO %^{Action}%? %^t")
           ("w" "Waiting" entry (file+headline ,main-org-file ,tasks-heading)
            "* WAITING %^{Action}%?\n%i")
           ("p" "Project" entry
