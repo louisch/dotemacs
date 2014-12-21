@@ -67,16 +67,14 @@ Missing packages are installed automatically."
     smartparens
     solarized-theme
     volatile-highlights
+    w3m
     yasnippet
 
     csharp-mode
-
     clojure-mode
     clojure-test-mode
     cider
-
     haskell-mode
-
     markdown-mode)
   "A list of packages to ensure are installed at launch")
 ;; Install all above packages
