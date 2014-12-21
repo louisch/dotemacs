@@ -7,6 +7,7 @@
       (append '(("\\.g4$" . antlr-mode)) auto-mode-alist))
 
 ;; C
+(require 'cc-mode)
 (setq c-basic-offset 2)
 (add-to-list 'c-default-style '(other . "k&r"))
 
