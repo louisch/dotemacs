@@ -23,6 +23,8 @@
 
 ;; Haskell
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(require 'speedbar)
+(speedbar-add-supported-extension ".hs")
 
 ;; Markdown
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
