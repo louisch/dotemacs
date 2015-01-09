@@ -60,6 +60,36 @@
 ;; Company Mode
 (global-company-mode)
 
+;; ERC
+;; Load ERC
+(require 'erc)
+;; Modules
+(setq erc-modules'(autojoin button completion dcc fill irccontrols list match
+                            menu move-to-prompt netsplit networks noncommands
+                            notifications readonly ring services smiley stamp
+                            track))
+(defvar rizon-username "louisch"
+  "The username to use for connecting to Rizon.")
+(defvar rizon-nickserv-password ""
+  "The password to use for authenticating with Rizon nickserv.")
+;; Load authentication info from an external source.  Put sensitive
+;; passwords and the like in here.
+(load (concat user-emacs-directory ".erc-auth.el"))
+;; Load nickserv data
+(setq erc-nick rizon-username)
+(setq erc-nickserv-passwords
+      `((rizon ((,rizon-username . ,rizon-nickserv-password)))))
+(setq erc-prompt-for-nickserv-password nil)
+;; This causes ERC to connect to the Rizon network upon hitting C-c e f.
+(global-set-key (kbd "C-c e r") (lambda () (interactive)
+                                  (erc :server "irc.rizon.net" :port "6667"
+                                       :nick rizon-username)))
+;; Channels to autojoin
+(setq erc-autojoin-channels-alist
+      '(("irc.rizon.net" "#horriblesubs" "#nipponsei")))
+;; Interpret mIRC-style color commands in IRC chats
+(setq erc-interpret-mirc-color t)
+
 ;; Fill Column Indicator
 (require 'fill-column-indicator)
 (add-hook 'org-mode-hook 'fci-mode)
@@ -114,6 +144,35 @@
 ;; Magit
 ;; Provide an interface to git from emacs
 (evil-leader/set-key "m" 'magit-status)
+
+;; Mu4e
+;; Note that this is not installed via package-install. Needs to be installed
+;; via package manager or otherwise.
+;; mu4e-maildir is set in personal-dirs.el
+(require 'mu4e)
+;; Default account
+(require 'mu4e-multi)
+(load "mu4e-multi-set-values.el")
+(mu4e-multi-enable)
+(defun my-mu4e-set-account ()
+  "Set the account for composing a message."
+  (let* ((account
+          (if mu4e-compose-parent-message
+              (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                (string-match "/\\(.*?\\)/" maildir)
+                (match-string 1 maildir))
+            (completing-read (format "Compose with account: (%s) "
+                                     (mapconcat #'(lambda (var) (car var))
+                                                my-mu4e-account-alist "/"))
+                             (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+                             nil t nil nil (caar my-mu4e-account-alist))))
+         (account-vars (cdr (assoc account my-mu4e-account-alist))))
+    (if account-vars
+        (mapc #'(lambda (var)
+                  (set (car var) (cadr var)))
+              account-vars)
+      (error "No email account found"))))
+(add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 
 ;; Paredit
 ;; Provide extra functionality for manipulating parentheses
