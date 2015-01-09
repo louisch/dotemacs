@@ -78,6 +78,7 @@ Missing packages are installed automatically."
     clojure-test-mode
     cider
     haskell-mode
+    lua-mode
     markdown-mode)
   "A list of packages to ensure are installed at launch")
 ;; Install all above packages
