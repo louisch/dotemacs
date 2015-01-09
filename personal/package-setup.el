@@ -48,8 +48,8 @@ Missing packages are installed automatically."
     ack-and-a-half
     aggressive-indent
     anzu
-    auto-complete
     auctex
+    company
     elm-mode
     evil
     evil-leader

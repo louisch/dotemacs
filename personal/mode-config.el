@@ -16,7 +16,6 @@
 (setq auto-mode-alist
       (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
 (setq c-default-style '((csharp-mode . "c#")))
-(add-to-list 'ac-modes 'csharp-mode)
 
 ;; Clojure
 (add-hook 'clojure-mode-hook 'evil-paredit-mode)

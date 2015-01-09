@@ -53,14 +53,8 @@
 (setq TeX-parse-self t)
 (setq TeX-PDF-mode t) ; Use pdfs rather than dvi files
 
-;; Auto-Complete
-;; Provide auto-complete for identifiers in a program
-(require 'auto-complete)
-(add-to-list 'ac-dictionary-directories (concat user-emacs-directory "ac-dict"))
-(require 'auto-complete-config)
-(ac-config-default)
-(ac-linum-workaround)
-(setq ac-ignore-case t)
+;; Company Mode
+(global-company-mode)
 
 ;; Fill Column Indicator
 (require 'fill-column-indicator)
