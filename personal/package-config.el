@@ -27,6 +27,8 @@
 (setq evil-search-wrap t)
 ;; Use C-u for scrolling
 (setq evil-want-C-u-scroll t)
+;; Rebind C-h h so that HELLO buffer doesn't get opened accidentally
+(define-key evil-normal-state-map (kbd "C-h h") 'evil-backward-char)
 
 ;; Ace Jump Mode
 (evil-leader/set-key "<SPC>" 'ace-jump-mode)
