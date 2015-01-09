@@ -50,6 +50,7 @@ Missing packages are installed automatically."
     anzu
     auto-complete
     auctex
+    elm-mode
     evil
     evil-leader
     evil-paredit
