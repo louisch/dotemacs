@@ -11,6 +11,13 @@
 (setq c-basic-offset 2)
 (add-to-list 'c-default-style '(other . "k&r"))
 
+;; C++
+(require 'cc-mode)
+(add-hook 'c-mode-common-hook 'semantic-mode)
+
+(setq gdb-many-windows t
+      gdb-show-main t)
+
 ;; C Sharp
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 (setq auto-mode-alist

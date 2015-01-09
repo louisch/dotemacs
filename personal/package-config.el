@@ -70,6 +70,15 @@
 ;; disable ido faces to see flx highlights
 (setq ido-use-faces nil)
 
+;; Function Args
+(require 'cc-mode)
+(require 'function-args)
+(fa-config-default)
+(define-key c-mode-map (kbd "C-<tab>") 'moo-complete)
+(define-key c++-mode-map (kbd "C-<tab>") 'moo-complete)
+(define-key c-mode-map (kbd "M-o") 'fa-show)
+(define-key c++-mode-map (kbd "M-o") 'fa-show)
+
 ;; Helm
 ;; Save files in an index, as projects
 (require 'helm-config)
@@ -122,6 +131,13 @@
 (setq-default saveplace t)
 ;; Change the default save location to be in the user emacs directory
 (setq save-place-file (concat user-emacs-directory "places"))
+
+;; Semantic
+(require 'semantic)
+
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
+(global-semantic-stickyfunc-mode 1)
 
 ;; Smartparens
 ;; Provide several features for manipulating delimiter pairs, including parens

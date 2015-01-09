@@ -57,6 +57,7 @@ Missing packages are installed automatically."
     fill-column-indicator
     flx-ido
     flycheck
+    function-args
     git-timemachine
     gitignore-mode
     helm
