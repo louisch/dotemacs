@@ -118,6 +118,7 @@
 (require 'helm-config)
 ;; Enable helm from the get-go
 (helm-mode 1)
+(add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
 ;; Reverse the bindings of persistent action and select action
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
