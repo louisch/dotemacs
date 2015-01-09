@@ -43,7 +43,9 @@
 ;; Aggressive Indent
 (global-aggressive-indent-mode 1)
 ;; List of modes to not use aggressive indent in.
-(add-to-list 'aggressive-indent-excluded-modes 'html-mode 'org-mode)
+(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+(add-to-list 'aggressive-indent-excluded-modes 'org-mode)
+(add-to-list 'aggressive-indent-excluded-modes 'haskell-mode)
 
 ;; Anzu
 (global-anzu-mode +1)
