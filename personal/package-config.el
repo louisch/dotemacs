@@ -74,7 +74,7 @@
   "The password to use for authenticating with Rizon nickserv.")
 ;; Load authentication info from an external source.  Put sensitive
 ;; passwords and the like in here.
-(load (concat user-emacs-directory ".erc-auth.el"))
+(load (concat user-emacs-directory "erc-auth.el"))
 ;; Load nickserv data
 (setq erc-nick rizon-username)
 (setq erc-nickserv-passwords
