@@ -13,7 +13,6 @@
               evil-want-C-u-scroll t
               evil-want-C-w-in-emacs-state t)
 (require 'evil)
-(evil-mode 1)
 ;; Enable evil-leader
 (require 'evil-leader)
 (global-evil-leader-mode)
@@ -112,6 +111,10 @@
 (define-key c++-mode-map (kbd "C-<tab>") 'moo-complete)
 (define-key c-mode-map (kbd "M-o") 'fa-show)
 (define-key c++-mode-map (kbd "M-o") 'fa-show)
+
+;; God Mode
+(require 'god-mode)
+(global-set-key (kbd "<escape>") 'god-local-mode)
 
 ;; Helm
 ;; Save files in an index, as projects
