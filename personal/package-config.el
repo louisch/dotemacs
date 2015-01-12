@@ -222,6 +222,13 @@
 (define-key evil-normal-state-map (kbd "C-S-d") 'sp-end-of-sexp)
 (define-key evil-normal-state-map (kbd "M-<backspace>") 'sp-unwrap-sexp)
 
+;; TRAMP
+(require 'em-tramp)
+(setq eshell-prefer-lisp-functions t)
+(setq eshell-prefer-lisp-variables t)
+(setq password-cache t)
+(setq password-cache-expiry 60)
+
 ;; Uniquify
 ;; When two buffers have the same name, distinguish them by their containing
 ;; directories
