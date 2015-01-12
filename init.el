@@ -5,9 +5,6 @@
   "Directory containing personal configuration files to load at
 initialization.")
 (add-to-list 'load-path personal-dir)
-(let ((mu4e-multi-path
-       (concat (file-name-as-directory personal-dir) "mu4e-multi")))
-  (add-to-list 'load-path mu4e-multi-path))
 ;; Not added to version control: system-local values for paths used in various
 ;; things.
 (load "personal-dirs.el")
