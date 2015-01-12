@@ -13,6 +13,7 @@
               evil-want-C-u-scroll t
               evil-want-C-w-in-emacs-state t)
 (require 'evil)
+(global-set-key (kbd "C-z") 'evil-local-mode)
 ;; Enable evil-leader
 (require 'evil-leader)
 (global-evil-leader-mode)
