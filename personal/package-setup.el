@@ -64,6 +64,7 @@ Missing packages are installed automatically."
     helm-projectile
     linum-relative
     magit
+    org-trello
     paredit
     powerline
     powerline-evil
