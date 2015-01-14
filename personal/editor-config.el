@@ -28,6 +28,9 @@
 
 ;; Behaviour
 
+;; Default mode
+(setq-default major-mode 'org-mode)
+
 ;; Indentation
 (setq-default indent-tabs-mode nil) ; Spaces only for indentation
 (setq-default tab-width 2)
