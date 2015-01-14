@@ -11,6 +11,8 @@
               evil-want-C-u-scroll t
               evil-want-C-w-in-emacs-state t)
 (require 'evil)
+(add-hook 'text-mode-hook 'evil-local-mode)
+(add-hook 'prog-mode-hook 'evil-local-mode)
 ;; Enable evil-leader
 (require 'evil-leader)
 (global-evil-leader-mode)
@@ -29,31 +31,7 @@
 
 ;; God Mode
 (require 'god-mode)
-
-;; State switch between Emacs, Evil, and God modes
-(defun state-changer (mode next-state)
-  `((mode . ,mode)
-    (next-state . ,next-state)))
-(defun get-mode (a-state-changer)
-  (cdr (assoc 'mode a-state-changer)))
-(defun get-next-state (a-state-changer)
-  (cdr (assoc 'next-state a-state-changer)))
-(let ((state-table `((emacs . ,(state-changer nil 'god))
-                     (god . ,(state-changer 'god-local-mode 'evil))
-                     (evil . ,(state-changer 'evil-local-mode 'emacs))))
-      (state 'emacs))
-  (defun change-state ()
-    (interactive)
-    (let* ((current-state-changer (assoc state state-table))
-           (current-mode (get-mode current-state-changer))
-           (next-state (get-next-state current-state-changer)))
-      (progn (when (fboundp current-mode) (funcall current-mode -1))
-             (let ((next-mode (get-mode (assoc next-state state-table))))
-               (when (fboundp next-mode) (funcall next-mode 1)))
-             (setq state next-state)))))
-(global-set-key (kbd "C-z") 'change-state)
-(define-key evil-normal-state-map (kbd "C-z") 'change-state)
-
+(global-set-key (kbd "C-z") 'god-local-mode)
 
 ;; Ace Jump Mode
 (evil-leader/set-key "<SPC>" 'ace-jump-mode)
