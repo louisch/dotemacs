@@ -2,10 +2,8 @@
 
 ;;; Package configuration:
 
-;; NOTE: Evil must be placed before anything else because the evil variables
-;; need to be set before any call to an evil function is made.
-;; Evil-leader/set-key is included in this requirement.
-;;
+;; Define Evil and God mode first, as they define the core experience
+
 ;; Evil
 ;; Provide vim keybindings to emacs
 ;; The following variables should be set before evil is loaded via require
@@ -13,7 +11,6 @@
               evil-want-C-u-scroll t
               evil-want-C-w-in-emacs-state t)
 (require 'evil)
-(global-set-key (kbd "C-z") 'evil-local-mode)
 ;; Enable evil-leader
 (require 'evil-leader)
 (global-evil-leader-mode)
@@ -29,6 +26,34 @@
 (setq evil-want-C-u-scroll t)
 ;; Rebind C-h h so that HELLO buffer doesn't get opened accidentally
 (define-key evil-normal-state-map (kbd "C-h h") 'evil-backward-char)
+
+;; God Mode
+(require 'god-mode)
+
+;; State switch between Emacs, Evil, and God modes
+(defun state-changer (mode next-state)
+  `((mode . ,mode)
+    (next-state . ,next-state)))
+(defun get-mode (a-state-changer)
+  (cdr (assoc 'mode a-state-changer)))
+(defun get-next-state (a-state-changer)
+  (cdr (assoc 'next-state a-state-changer)))
+(let ((state-table `((emacs . ,(state-changer nil 'god))
+                     (god . ,(state-changer 'god-local-mode 'evil))
+                     (evil . ,(state-changer 'evil-local-mode 'emacs))))
+      (state 'emacs))
+  (defun change-state ()
+    (interactive)
+    (let* ((current-state-changer (assoc state state-table))
+           (current-mode (get-mode current-state-changer))
+           (next-state (get-next-state current-state-changer)))
+      (progn (when (fboundp current-mode) (funcall current-mode -1))
+             (let ((next-mode (get-mode (assoc next-state state-table))))
+               (when (fboundp next-mode) (funcall next-mode 1)))
+             (setq state next-state)))))
+(global-set-key (kbd "C-z") 'change-state)
+(define-key evil-normal-state-map (kbd "C-z") 'change-state)
+
 
 ;; Ace Jump Mode
 (evil-leader/set-key "<SPC>" 'ace-jump-mode)
@@ -112,10 +137,6 @@
 (define-key c++-mode-map (kbd "C-<tab>") 'moo-complete)
 (define-key c-mode-map (kbd "M-o") 'fa-show)
 (define-key c++-mode-map (kbd "M-o") 'fa-show)
-
-;; God Mode
-(require 'god-mode)
-(global-set-key (kbd "<escape>") 'god-local-mode)
 
 ;; Helm
 ;; Save files in an index, as projects
