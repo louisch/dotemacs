@@ -8,6 +8,7 @@ initialization.")
 ;; Not added to version control: system-local values for paths used in various
 ;; things.
 (load "personal-dirs.el")
+(load "find-file-command.el")
 ;; Modularized configuration files
 (load "package-setup.el")
 (load "package-config.el")
