@@ -61,7 +61,7 @@
 (setq TeX-PDF-mode t) ; Use pdfs rather than dvi files
 
 ;; Company Mode
-(global-company-mode)
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; ERC
 ;; Load ERC
