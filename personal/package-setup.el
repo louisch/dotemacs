@@ -58,6 +58,8 @@ Missing packages are installed automatically."
     function-args
     git-timemachine
     gitignore-mode
+    god-mode
+    golden-ratio
     helm
     helm-projectile
     linum-relative
