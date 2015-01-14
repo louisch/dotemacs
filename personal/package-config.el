@@ -36,13 +36,6 @@
 ;; Ace Jump Mode
 (evil-leader/set-key "<SPC>" 'ace-jump-mode)
 
-;; Ack-and-a-half
-(require 'ack-and-a-half)
-(defalias 'ack 'ack-and-a-half)
-(defalias 'ack-same 'ack-and-a-half-same)
-(defalias 'ack-find-file 'ack-and-a-half-find-file)
-(defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
-
 ;; Aggressive Indent
 (global-aggressive-indent-mode 1)
 ;; List of modes to not use aggressive indent in.

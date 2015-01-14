@@ -44,7 +44,6 @@ Missing packages are installed automatically."
 ;; Required packages:
 (defvar my-packages
   '(ace-jump-mode
-    ack-and-a-half
     aggressive-indent
     anzu
     auctex
@@ -77,7 +76,6 @@ Missing packages are installed automatically."
 
     csharp-mode
     clojure-mode
-    clojure-test-mode
     cider
     haskell-mode
     lua-mode
