@@ -2,86 +2,63 @@
 
 ;;; Packages
 
-(require 'cl)
-(require 'package)
-;; List of package archives
-(add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+;; Initialise el-get
+(add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 
-;; Initialise packages
-(package-initialize)
-(package-refresh-contents)
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
 
+(add-to-list 'el-get-recipe-path
+             (concat user-emacs-directory "el-get-user/recipes"))
+(setq el-get-verbose t)
 
-;; Functions for installing and managing packages taken from Emacs Prelude
-(defun packages-installed-p ()
-  "Check if all packages in `my-packages' are installed."
-  (every #'package-installed-p my-packages))
-(defun require-package (package)
-  "Install PACKAGE unless already installed."
-  (unless (memq package my-packages)
-    (add-to-list 'my-packages package))
-  (unless (package-installed-p package)
-    (package-install package)))
-(defun require-packages (packages)
-  "Ensure PACKAGES are installed.
-Missing packages are installed automatically."
-  (mapc #'require-package my-packages))
-(defun try-install-packages ()
-  "Install any packages listed in `my-packages' if not installed."
-  (unless (packages-installed-p)
-    ;; check for new packages (package versions)
-    (message "%s" "Now refreshing package database...")
-    (package-refresh-contents)
-    (message "%s" " done.")
-    ;; install the missing packages
-    (require-packages my-packages)))
-
+(require 'el-get)
+(require 'el-get-elpa)
+;; Build the El-Get copy of the package.el packages if we have not
+;; built it before.  Will have to look into updating later ...
+(unless (file-directory-p el-get-recipe-path-elpa)
+  (el-get-elpa-build-local-recipes))
 ;; Required packages:
-(defvar my-packages
-  '(ace-jump-mode
-    aggressive-indent
-    anzu
-    auctex
-    company
-    elm-mode
-    evil
-    evil-leader
-    evil-paredit
-    fill-column-indicator
-    flx-ido
-    flycheck
-    function-args
-    git-timemachine
-    gitignore-mode
-    god-mode
-    golden-ratio
-    helm
-    helm-projectile
-    linum-relative
-    magit
-    org-trello
-    paredit
-    powerline
-    powerline-evil
-    projectile
-    saveplace
-    smartparens
-    solarized-theme
-    volatile-highlights
-    w3m
-    yasnippet
+(setq my-packages
+      (append
+       '(ace-jump-mode
+         aggressive-indent-mode
+         anzu
+         auctex
+         company-mode
+         evil
+         evil-leader
+         evil-paredit
+         fill-column-indicator
+         flx-ido
+         flycheck
+         function-args
+         git-timemachine
+         god-mode
+         golden-ratio
+         helm
+         jazz-theme
+         linum-relative
+         magit
+         org-trello
+         paredit
+         projectile
+         smartparens
+         volatile-highlights
+         w3m
+         yasnippet
 
-    csharp-mode
-    clojure-mode
-    cider
-    haskell-mode
-    lua-mode
-    markdown-mode)
-  "A list of packages to ensure are installed at launch")
-;; Install all above packages
-(try-install-packages)
+         csharp-mode
+         clojure-mode
+         cider
+         elm-mode
+         haskell-mode
+         lua-mode
+         markdown-mode)
+       (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
+
+(el-get 'sync my-packages)

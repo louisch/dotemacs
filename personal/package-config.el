@@ -146,11 +146,6 @@
 ;; Provide extra functionality for manipulating parentheses
 (require 'evil-paredit)
 
-;; Powerline
-(require 'powerline)
-(powerline-evil-center-color-theme)
-(require 'powerline-evil)
-
 ;; Projectile
 (require 'projectile)
 (projectile-global-mode)
