@@ -114,3 +114,6 @@ some point.")
 
 ;; Push to MobileOrg on exit
 (add-hook 'kill-emacs-hook 'org-mobile-push)
+
+;; Minor modes to activate with org mode
+(add-hook 'org-mode-hook 'writegood-mode)

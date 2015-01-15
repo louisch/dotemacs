@@ -27,7 +27,12 @@
 
 ;; Behaviour
 
+;; Startup screen
+(setq inhibit-splash-screen t)
+(setq initial-scratch-message nil)
+
 ;; Default mode
+(setq-default initial-major-mode 'org-mode)
 (setq-default major-mode 'org-mode)
 
 ;; Indentation
@@ -36,12 +41,15 @@
 ;; Require newline at end of files
 (setq require-final-newline t)
 
+;; Echo keystroke with a shorter delay
+(setq echo-keystrokes 0.1)
+
 ;; Automatically revert files when they are changed externally
 (global-auto-revert-mode t)
 
-;; Backup directory
-(setq backup-directory-alist
-      (list (cons "." (concat user-emacs-directory "backups"))))
+;; Disable autosave and backups
+(setq make-backup-files nil)
+(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 
 ;; help apropos will show everything, including functions
 (setq apropos-do-all t)
@@ -56,8 +64,10 @@
 ;; Enable debug information on error
 (setq debug-on-error t)
 
-;; Coding system
+;; utf-8
 (prefer-coding-system 'utf-8)
+(when (display-graphic-p)
+  (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 
 
 ;; Keybindings

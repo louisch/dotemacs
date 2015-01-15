@@ -50,6 +50,7 @@
          smartparens
          volatile-highlights
          w3m
+         writegood-mode
          yasnippet
 
          csharp-mode
