@@ -108,12 +108,5 @@ some point.")
 ;; Use indentation form to display headlines
 (add-hook 'org-mode-hook 'org-indent-mode)
 
-;; Pull from MobileOrg on startup
-(require 'org-mobile)
-(add-hook 'after-init-hook 'org-mobile-pull)
-
-;; Push to MobileOrg on exit
-(add-hook 'kill-emacs-hook 'org-mobile-push)
-
 ;; Minor modes to activate with org mode
 (add-hook 'org-mode-hook 'writegood-mode)
