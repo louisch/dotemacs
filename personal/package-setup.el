@@ -2,64 +2,105 @@
 
 ;;; Packages
 
-;; Initialise el-get
-(add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
+(require 'require-packages)
 
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
-
-(add-to-list 'el-get-recipe-path
-             (concat user-emacs-directory "el-get-user/recipes"))
-(setq el-get-verbose t)
-
-(require 'el-get)
-(require 'el-get-elpa)
-;; Build the El-Get copy of the package.el packages if we have not
-;; built it before.  Will have to look into updating later ...
-(unless (file-directory-p el-get-recipe-path-elpa)
-  (el-get-elpa-build-local-recipes))
 ;; Required packages:
-(setq my-packages
-      (append
-       '(ace-jump-mode
-         aggressive-indent-mode
-         anzu
-         auctex
-         company-mode
-         evil
-         evil-leader
-         evil-paredit
-         fill-column-indicator
-         flx-ido
-         flycheck
-         function-args
-         git-timemachine
-         god-mode
-         golden-ratio
-         helm
-         jazz-theme
-         linum-relative
-         magit
-         org-trello
-         paredit
-         projectile
-         smartparens
-         volatile-highlights
-         w3m
-         writegood-mode
-         yasnippet
+(setq required-packages
+      '(ace-jump-mode
+        aggressive-indent
+        anzu
+        auctex
+        company
+        color-theme-solarized
+        evil
+        evil-leader
+        evil-paredit
+        fill-column-indicator
+        flx-ido
+        flycheck
+        function-args
+        git-timemachine
+        god-mode
+        golden-ratio
+        helm
+        jazz-theme
+        linum-relative
+        magit
+        org-trello
+        paredit
+        projectile
+        smartparens
+        volatile-highlights
+        w3m
+        writegood-mode
+        yasnippet
 
-         csharp-mode
-         clojure-mode
-         cider
-         elm-mode
-         haskell-mode
-         lua-mode
-         markdown-mode)
-       (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
+        clojure-mode
+        cider
+        elm-mode
+        haskell-mode
+        lua-mode
+        markdown-mode))
 
-(el-get 'sync my-packages)
+(install-packages)
+
+(defvar auto-install-alist
+  '(("\\.clj\\'" clojure-mode clojure-mode)
+    ("\\.coffee\\'" coffee-mode coffee-mode)
+    ("\\.css\\'" css-mode css-mode)
+    ("\\.csv\\'" csv-mode csv-mode)
+    ("\\.d\\'" d-mode d-mode)
+    ("\\.dart\\'" dart-mode dart-mode)
+    ("\\.ex\\'" elixir-mode elixir-mode)
+    ("\\.exs\\'" elixir-mode elixir-mode)
+    ("\\.elixir\\'" elixir-mode elixir-mode)
+    ("\\.erl\\'" erlang erlang-mode)
+    ("\\.feature\\'" feature-mode feature-mode)
+    ("\\.go\\'" go-mode go-mode)
+    ("\\.groovy\\'" groovy-mode groovy-mode)
+    ("\\.haml\\'" haml-mode haml-mode)
+    ("\\.hs\\'" haskell-mode haskell-mode)
+    ("\\.kv\\'" kivy-mode kivy-mode)
+    ("\\.latex\\'" auctex LaTeX-mode)
+    ("\\.less\\'" less-css-mode less-css-mode)
+    ("\\.lua\\'" lua-mode lua-mode)
+    ("\\.markdown\\'" markdown-mode markdown-mode)
+    ("\\.md\\'" markdown-mode markdown-mode)
+    ("\\.ml\\'" tuareg tuareg-mode)
+    ("\\.pp\\'" puppet-mode puppet-mode)
+    ("\\.php\\'" php-mode php-mode)
+    ("\\.proto\\'" protobuf-mode protobuf-mode)
+    ("\\.pyd\\'" cython-mode cython-mode)
+    ("\\.pyi\\'" cython-mode cython-mode)
+    ("\\.pyx\\'" cython-mode cython-mode)
+    ("PKGBUILD\\'" pkgbuild-mode pkgbuild-mode)
+    ("\\.rs\\'" rust-mode rust-mode)
+    ("\\.sass\\'" sass-mode sass-mode)
+    ("\\.scala\\'" scala-mode2 scala-mode)
+    ("\\.scss\\'" scss-mode scss-mode)
+    ("\\.slim\\'" slim-mode slim-mode)
+    ("\\.swift\\'" swift-mode swift-mode)
+    ("\\.textile\\'" textile-mode textile-mode)
+    ("\\.thrift\\'" thrift thrift-mode)
+    ("\\.yml\\'" yaml-mode yaml-mode)
+    ("\\.yaml\\'" yaml-mode yaml-mode)
+    ("Dockerfile\\'" dockerfile-mode dockerfile-mode)))
+
+;; markdown-mode doesn't have autoloads for the auto-mode-alist
+;; so we add them manually if it's already installed
+(when (package-installed-p 'markdown-mode)
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+
+(when (package-installed-p 'pkgbuild-mode)
+  (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . pkgbuild-mode)))
+
+;; build auto-install mappings
+(mapc
+ (lambda (entry)
+   (let ((extension (car entry))
+         (package (cadr entry))
+         (mode (cadr (cdr entry))))
+     (unless (package-installed-p package)
+       (auto-install extension package mode))))
+ auto-install-alist)

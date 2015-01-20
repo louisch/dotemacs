@@ -37,11 +37,9 @@
 (evil-leader/set-key "<SPC>" 'ace-jump-mode)
 
 ;; Aggressive Indent
-(global-aggressive-indent-mode 1)
-;; List of modes to not use aggressive indent in.
-(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
-(add-to-list 'aggressive-indent-excluded-modes 'org-mode)
-(add-to-list 'aggressive-indent-excluded-modes 'haskell-mode)
+(require 'aggressive-indent)
+(add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+(add-hook 'c-mode-common-hook #'aggressive-indent-mode)
 
 ;; Anzu
 (global-anzu-mode +1)
