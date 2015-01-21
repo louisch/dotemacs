@@ -130,19 +130,16 @@
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 ;; Rebind helm's google suggest to a more convenient binding
 (global-set-key (kbd "C-x c g") 'helm-google-suggest)
-(evil-leader/set-key "g" 'helm-google-suggest)
 
 ;; Linum
 ;; Display line numbers
 (require 'linum)
 (require 'linum-relative)
-(add-hook 'find-file-hook (lambda ()
-                            (hl-line-mode)
-                            (linum-mode)))
+(add-hook 'find-file-hook (lambda () (hl-line-mode) (linum-mode)))
 
 ;; Magit
 ;; Provide an interface to git from emacs
-(evil-leader/set-key "m" 'magit-status)
+(global-set-key (kbd "C-c m") 'magit-status)
 
 ;; Paredit
 ;; Provide extra functionality for manipulating parentheses

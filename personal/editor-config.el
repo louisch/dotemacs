@@ -72,12 +72,14 @@
 
 ;; Keybindings
 (define-key evil-normal-state-map "," 'universal-argument)
+(defun my-save-command ()
+  "Custom save command. Currently deletes trailing whitespace before saving."
+  (interactive)
+  (delete-trailing-whitespace)
+  (save-buffer))
+(global-set-key (kbd "C-x s") 'my-save-command)
+(global-set-key (kbd "C-c i") (find-file-command user-init-file))
+(global-set-key (kbd "C-c %") 'split-window-right)
+(global-set-key (kbd "C-c \"") 'split-window-below)
 (evil-leader/set-key
-  "s" (lambda () (interactive)
-        (progn (delete-trailing-whitespace) (save-buffer)))
-  "e" 'helm-find-files
-  "b" 'helm-mini
-  "w" 'delete-trailing-whitespace
-  "i" (find-file-command user-init-file)
-  "%" 'split-window-right
-  "\"" 'split-window-below)
+  "w" 'delete-trailing-whitespace)
