@@ -183,7 +183,10 @@
 (define-key evil-normal-state-map (kbd "M-<backspace>") 'sp-unwrap-sexp)
 
 ;; TRAMP
-(require 'em-tramp)
+(if (and (= emacs-major-version 24)
+	 (>= emacs-minor-version 4))
+    (require 'em-tramp)
+  (require 'tramp))
 (setq eshell-prefer-lisp-functions t)
 (setq eshell-prefer-lisp-variables t)
 (setq password-cache t)
