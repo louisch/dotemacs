@@ -107,6 +107,10 @@
 (define-key c-mode-map (kbd "M-o") 'fa-show)
 (define-key c++-mode-map (kbd "M-o") 'fa-show)
 
+;; Golden Ratio
+(require 'golden-ratio)
+(golden-ratio-mode 1)
+
 ;; Helm
 ;; Save files in an index, as projects
 (require 'helm-config)
