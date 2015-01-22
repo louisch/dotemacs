@@ -1,6 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 
-(require 'cl)
 (defvar personal-dir (concat user-emacs-directory "personal")
   "Directory containing personal configuration files to load at
 initialization.")
