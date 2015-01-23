@@ -43,15 +43,20 @@ Also adds the extension."
         ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
         ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
 ;; Tags
+;; Some, such as CANCELLED, are set by changing todo-state.
+;; Others, such as PERSONAL, are set by FILETAGS
 (setq org-tag-alist
       '((:startgroup)
-        ("laptop" . ?l) ("desktop" . ?d) ("phone" . ?p)
+        ("@london" . ?l) ("@apartment" . ?a) ("@sheffield" . ?s)
         (:endgroup)
-        (:startgroup)
-        ("@campus" . ?c) ("@apartment" . ?a) ("@sheffield" . ?s)
-        (:endgroup)
-        ("low_energy" . ?o)))
-;; Capture Templates
+        ("CANCELLED" . ?c)
+        ("WAITING" . ?c)
+        ("HOLD" . ?h)
+        ("PERSONAL" . ?p)
+        ("WORK" . ?w)))
+(setq org-fast-tag-selection-single-key t)
+
+;; Capture
 (setq org-capture-templates
       `(("t" "todo" entry (file (make-org-file-path "refile"))
          "* TODO %?\n%U\n%a\n"
@@ -74,9 +79,11 @@ Also adds the extension."
                  "\"<%Y-%m-%d %a .+1d/3d>\")\n"
                  ":PROPERTIES:\n:STYLE: habit\n"
                  ":REPEAT_TO_STATE: NEXT\n:END:\n"))))
-;; Agenda Files
+
+;; Agenda
 (setq org-agenda-files `(,org-directory))
 (setq org-agenda-compact-blocks t)
+(setq org-agenda-span 'day)
 (setq org-agenda-custom-commands
       '((" " "Agenda"
          ((agenda "" nil)
