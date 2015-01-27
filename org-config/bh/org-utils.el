@@ -314,4 +314,19 @@ as the default task."
 
 (add-hook 'org-clock-out-hook 'bh/clock-out-maybe 'append)
 
-(provide 'org-bh)
+(defun bh/org-todo (arg)
+  (interactive "p")
+  (if (equal arg 4)
+      (save-restriction
+        (bh/narrow-to-org-subtree)
+        (org-show-todo-tree nil))
+    (bh/narrow-to-org-subtree)
+    (org-show-todo-tree nil)))
+
+(defun bh/narrow-to-org-subtree ()
+  (widen)
+  (org-narrow-to-subtree)
+  (save-restriction
+    (org-agenda-set-restriction-lock)))
+
+(provide 'bh/org-utils)

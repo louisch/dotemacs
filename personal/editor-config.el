@@ -69,15 +69,12 @@
 (when (display-graphic-p)
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 
+;; Delete trailing whitespace on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 
 ;; Keybindings
 (define-key evil-normal-state-map "," 'universal-argument)
-(defun my-save-command ()
-  "Custom save command. Currently deletes trailing whitespace before saving."
-  (interactive)
-  (delete-trailing-whitespace)
-  (save-buffer))
-(global-set-key (kbd "C-x s") 'my-save-command)
 (global-set-key (kbd "C-c i") (find-file-command user-init-file))
 (global-set-key (kbd "C-c %") 'split-window-right)
 (global-set-key (kbd "C-c \"") 'split-window-below)
