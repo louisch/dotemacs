@@ -15,13 +15,6 @@
 ;; Turn column numbers on in the modeline
 (setq column-number-mode t)
 
-;; Set frames to have width 84 (enough space to display 80 characters), and full
-;; screen height.
-(add-to-list 'default-frame-alist '(left . 0))
-(add-to-list 'default-frame-alist '(top . 0))
-(add-to-list 'default-frame-alist '(width . 84))
-(add-to-list 'default-frame-alist '(fullscreen . fullheight))
-
 ;; Theme
 (load-theme 'jazz t)
 
