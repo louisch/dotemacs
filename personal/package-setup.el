@@ -38,6 +38,7 @@
         clojure-mode
         cider
         elm-mode
+        erlang
         haskell-mode
         lua-mode
         markdown-mode))
