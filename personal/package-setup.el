@@ -12,6 +12,7 @@
         auctex
         company
         color-theme-solarized
+        elpy
         evil
         evil-leader
         evil-paredit
