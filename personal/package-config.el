@@ -55,6 +55,9 @@
 ;; Company Mode
 (add-hook 'after-init-hook 'global-company-mode)
 
+;; Elpy
+(elpy-enable)
+
 ;; ERC
 ;; Load ERC
 (require 'erc)
@@ -174,7 +177,7 @@
 (setq sp-show-pair-from-inside t)
 ;; Consider strings as sexps in smartparens in the following modes:
 (nconc sp-navigate-consider-stringlike-sexp
-       '(emacs-lisp-mode csharp-mode python-mode))
+       '(emacs-lisp-mode csharp-mode))
 ;; Keybindings for Smartparens, for evil
 (define-key evil-normal-state-map (kbd "C-M-f") 'sp-forward-sexp)
 (define-key evil-normal-state-map (kbd "C-M-b") 'sp-backward-sexp)
