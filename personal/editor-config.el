@@ -20,6 +20,10 @@
 ;; Theme
 (load-theme 'jazz t)
 
+;; Force vertical split
+(setq split-width-threshold 0)
+
+
 ;; Behaviour
 
 ;; Startup screen
