@@ -1,5 +1,7 @@
 ;;; -*- lexical-binding: t -*-
 
+(require 'toggle-window-split)
+
 ;;; Editor Configuration
 
 ;; Appearance
