@@ -8,7 +8,7 @@
 
 ;; C
 (require 'cc-mode)
-(setq c-basic-offset 2)
+(setq-default c-basic-offset 4)
 (add-to-list 'c-default-style '(other . "k&r"))
 
 ;; C++

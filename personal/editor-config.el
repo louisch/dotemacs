@@ -36,7 +36,7 @@
 
 ;; Indentation
 (setq-default indent-tabs-mode nil) ; Spaces only for indentation
-(setq-default tab-width 2)
+(setq-default tab-width 4)
 ;; Require newline at end of files
 (setq require-final-newline t)
 
