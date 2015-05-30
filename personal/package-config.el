@@ -189,7 +189,7 @@
 
 ;; TRAMP
 (if (and (= emacs-major-version 24)
-	 (>= emacs-minor-version 4))
+         (>= emacs-minor-version 4))
     (require 'em-tramp)
   (require 'tramp))
 (setq eshell-prefer-lisp-functions t)
