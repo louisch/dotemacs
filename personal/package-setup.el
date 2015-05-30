@@ -27,7 +27,6 @@
         jazz-theme
         linum-relative
         magit
-        org-trello
         paredit
         projectile
         smartparens
