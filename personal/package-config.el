@@ -144,6 +144,7 @@
 ;; Magit
 ;; Provide an interface to git from emacs
 (global-set-key (kbd "C-c m") 'magit-status)
+(setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; Paredit
 ;; Provide extra functionality for manipulating parentheses
