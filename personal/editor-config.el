@@ -57,9 +57,6 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq confirm-nonexistent-file-or-buffer nil)
 
-;; Save emacs' state upon closing
-(setq desktop-save-mode 1)
-
 ;; Enable debug information on error
 (setq debug-on-error t)
 
