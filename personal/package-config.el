@@ -20,8 +20,6 @@
 (evil-leader/set-leader "<SPC>")
 ;; Fine grained undo
 (setq evil-want-fine-undo t)
-;; < and > shift width
-(setq-default evil-shift-width 2)
 ;; Configure searching
 (setq evil-regex-search t)
 (setq evil-search-wrap t)
