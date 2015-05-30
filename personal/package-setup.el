@@ -42,7 +42,8 @@
         erlang
         haskell-mode
         lua-mode
-        markdown-mode))
+        markdown-mode
+        web-mode))
 
 (install-packages)
 
