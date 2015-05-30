@@ -185,6 +185,8 @@
 (define-key evil-normal-state-map (kbd "C-S-a") 'sp-beginning-of-sexp)
 (define-key evil-normal-state-map (kbd "C-S-d") 'sp-end-of-sexp)
 (define-key evil-normal-state-map (kbd "M-<backspace>") 'sp-unwrap-sexp)
+;; Turn off for web mode (<% %> causes problems, can't seem to fix with permissions)
+(add-hook 'web-mode-hook #'turn-off-smartparens-mode)
 
 ;; TRAMP
 (if (and (= emacs-major-version 24)
