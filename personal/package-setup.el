@@ -7,40 +7,35 @@
 ;; Required packages:
 (setq required-packages
       '(ace-jump-mode
-        aggressive-indent
-        anzu
         auctex
         company
         color-theme-solarized
         evil
         evil-leader
-        evil-paredit
         fill-column-indicator
         flx-ido
         flycheck
-        function-args
         git-timemachine
-        god-mode
         golden-ratio
         helm
         jazz-theme
         linum-relative
         magit
-        org-trello
-        paredit
         projectile
         smartparens
         volatile-highlights
-        w3m
         writegood-mode
         yasnippet
 
         clojure-mode
         cider
         elm-mode
+        elpy
+        erlang
         haskell-mode
         lua-mode
-        markdown-mode))
+        markdown-mode
+        web-mode))
 
 (install-packages)
 
