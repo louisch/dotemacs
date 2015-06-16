@@ -26,27 +26,11 @@
 ;; Configure searching
 (setq evil-regex-search t)
 (setq evil-search-wrap t)
-;; Use C-u for scrolling
-(setq evil-want-C-u-scroll t)
 ;; Rebind C-h h so that HELLO buffer doesn't get opened accidentally
 (define-key evil-normal-state-map (kbd "C-h h") 'evil-backward-char)
 
-;; God Mode
-(require 'god-mode)
-(global-set-key (kbd "C-z") 'god-local-mode)
-
 ;; Ace Jump Mode
 (evil-leader/set-key "<SPC>" 'ace-jump-mode)
-
-;; Aggressive Indent
-(require 'aggressive-indent)
-(add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
-(add-hook 'c-mode-common-hook #'aggressive-indent-mode)
-
-;; Anzu
-(global-anzu-mode +1)
-(global-set-key (kbd "M-%") 'anzu-query-replace)
-(global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
 
 ;; AUCTeX
 (setq TeX-auto-save t)
@@ -89,12 +73,6 @@
 ;; Interpret mIRC-style color commands in IRC chats
 (setq erc-interpret-mirc-color t)
 
-;; Fill Column Indicator
-(require 'fill-column-indicator)
-(add-hook 'org-mode-hook 'fci-mode)
-(add-hook 'markdown-mode-hook 'fci-mode)
-(add-hook 'prog-mode-hook 'fci-mode)
-
 ;; flx
 (require 'flx-ido)
 (ido-mode 1)
@@ -102,15 +80,6 @@
 (flx-ido-mode 1)
 ;; disable ido faces to see flx highlights
 (setq ido-use-faces nil)
-
-;; Function Args
-(require 'cc-mode)
-(require 'function-args)
-(fa-config-default)
-(define-key c-mode-map (kbd "C-<tab>") 'moo-complete)
-(define-key c++-mode-map (kbd "C-<tab>") 'moo-complete)
-(define-key c-mode-map (kbd "M-o") 'fa-show)
-(define-key c++-mode-map (kbd "M-o") 'fa-show)
 
 ;; Golden Ratio
 (require 'golden-ratio)
@@ -147,10 +116,6 @@
 (global-set-key (kbd "C-c m") 'magit-status)
 (setq magit-last-seen-setup-instructions "1.4.0")
 
-;; Paredit
-;; Provide extra functionality for manipulating parentheses
-(require 'evil-paredit)
-
 ;; Projectile
 (require 'projectile)
 (projectile-global-mode)
@@ -178,8 +143,7 @@
 (show-smartparens-global-mode t)
 (setq sp-show-pair-from-inside t)
 ;; Consider strings as sexps in smartparens in the following modes:
-(nconc sp-navigate-consider-stringlike-sexp
-       '(emacs-lisp-mode csharp-mode))
+(nconc sp-navigate-consider-stringlike-sexp '(prog-mode))
 ;; Keybindings for Smartparens, for evil
 (define-key evil-normal-state-map (kbd "C-M-f") 'sp-forward-sexp)
 (define-key evil-normal-state-map (kbd "C-M-b") 'sp-backward-sexp)
@@ -188,8 +152,6 @@
 (define-key evil-normal-state-map (kbd "C-S-a") 'sp-beginning-of-sexp)
 (define-key evil-normal-state-map (kbd "C-S-d") 'sp-end-of-sexp)
 (define-key evil-normal-state-map (kbd "M-<backspace>") 'sp-unwrap-sexp)
-;; Turn off for web mode (<% %> causes problems, can't seem to fix with permissions)
-(add-hook 'web-mode-hook #'turn-off-smartparens-mode)
 
 ;; TRAMP
 (if (and (= emacs-major-version 24)
@@ -200,12 +162,6 @@
 (setq eshell-prefer-lisp-variables t)
 (setq password-cache t)
 (setq password-cache-expiry 60)
-
-;; Uniquify
-;; When two buffers have the same name, distinguish them by their containing
-;; directories
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
 
 ;; Volatile Highlights
 (require 'volatile-highlights)
