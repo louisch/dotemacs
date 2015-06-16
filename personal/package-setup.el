@@ -7,37 +7,30 @@
 ;; Required packages:
 (setq required-packages
       '(ace-jump-mode
-        aggressive-indent
-        anzu
         auctex
         company
         color-theme-solarized
-        elpy
         evil
         evil-leader
-        evil-paredit
         fill-column-indicator
         flx-ido
         flycheck
-        function-args
         git-timemachine
-        god-mode
         golden-ratio
         helm
         jazz-theme
         linum-relative
         magit
-        paredit
         projectile
         smartparens
         volatile-highlights
-        w3m
         writegood-mode
         yasnippet
 
         clojure-mode
         cider
         elm-mode
+        elpy
         erlang
         haskell-mode
         lua-mode
