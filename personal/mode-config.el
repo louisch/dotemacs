@@ -3,8 +3,7 @@
 ;;; Mode-specific:
 
 ;; ANTLR
-(setq auto-mode-alist
-      (append '(("\\.g4$" . antlr-mode)) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.g4$" . antlr-mode))
 
 ;; C
 (require 'cc-mode)
@@ -20,9 +19,8 @@
 
 ;; C Sharp
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
-(setq auto-mode-alist
-      (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
-(setq c-default-style '((csharp-mode . "c#")))
+(add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
+(add-to-list 'c-default-style '(csharp-mode . "c#"))
 
 ;; Clojure
 (add-hook 'clojure-mode-hook 'evil-paredit-mode)
