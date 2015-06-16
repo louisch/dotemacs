@@ -72,6 +72,11 @@
 (when (display-graphic-p)
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 
+;; When two buffers have the same name, distinguish them by their containing
+;; directories
+(setq uniquify-buffer-name-style 'forward)
+
+
 ;; Delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
