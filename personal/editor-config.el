@@ -50,9 +50,12 @@
 ;; Automatically revert files when they are changed externally
 (global-auto-revert-mode t)
 
-;; Disable autosave and backups
-(setq make-backup-files nil)
-(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
+;; Move backups and auto-saves into /tmp
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
 
 ;; help apropos will show everything, including functions
 (setq apropos-do-all t)
