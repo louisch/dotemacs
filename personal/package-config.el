@@ -14,6 +14,9 @@
 (add-hook 'text-mode-hook 'evil-local-mode)
 (add-hook 'prog-mode-hook 'evil-local-mode)
 (add-hook 'erlang-mode-hook 'evil-local-mode)
+(add-hook 'web-mode-hook 'evil-local-mode)
+(add-hook 'scss-mode-hook 'evil-local-mode)
+(add-hook 'yaml-mode-hook 'evil-local-mode)
 ;; Enable evil-leader
 (require 'evil-leader)
 (global-evil-leader-mode)
