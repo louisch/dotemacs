@@ -31,6 +31,7 @@
         clojure-mode
         cider
         elm-mode
+        elixir-mode
         elpy
         erlang
         haskell-mode
