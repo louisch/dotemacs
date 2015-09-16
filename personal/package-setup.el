@@ -78,6 +78,7 @@
     ("\\.slim\\'" slim-mode slim-mode)
     ("\\.swift\\'" swift-mode swift-mode)
     ("\\.textile\\'" textile-mode textile-mode)
+    ("\\.toml\\'" toml-mode toml-mode)
     ("\\.thrift\\'" thrift thrift-mode)
     ("\\.yml\\'" yaml-mode yaml-mode)
     ("\\.yaml\\'" yaml-mode yaml-mode)
