@@ -1,6 +1,6 @@
 [submodule "snippets"]
 	path = snippets
 	url = https://github.com/AndreaCrotti/yasnippet-snippets.git
-[submodule "personal/mu4e-multi"]
-	path = personal/mu4e-multi
-	url = https://github.com/fgallina/mu4e-multi.git
+[submodule "lib/funda-haxe-mode"]
+	path = lib/funda-haxe-mode
+	url = https://github.com/pierre-arlaud/funda-haxe-mode.git
