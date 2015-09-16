@@ -20,5 +20,3 @@
 (load "package-config.el")
 (load "mode-config.el")
 (load "editor-config.el")
-
-(require 'org-config-main)
