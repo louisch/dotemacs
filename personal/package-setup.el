@@ -27,6 +27,7 @@
         writegood-mode
         yasnippet
 
+        alchemist
         clojure-mode
         cider
         elm-mode
