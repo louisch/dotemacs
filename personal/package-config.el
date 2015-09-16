@@ -30,7 +30,8 @@
 (define-key evil-normal-state-map (kbd "C-h h") 'evil-backward-char)
 
 ;; Ace Jump Mode
-(evil-leader/set-key "<SPC>" 'ace-jump-mode)
+(evil-leader/set-key "<SPC>" 'ace-jump-char-mode)
+(evil-leader/set-key "j" 'ace-jump-word-mode)
 
 ;; AUCTeX
 (setq TeX-auto-save t)
